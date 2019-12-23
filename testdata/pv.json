@@ -1,0 +1,303 @@
+kubectl --namespace=kafka get pv -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolume",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T14:00:19Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-5d5dbb4d-24c3-11ea-8dc9-02cea54b2b40",
+                "resourceVersion": "15594",
+                "selfLink": "/api/v1/persistentvolumes/pvc-5d5dbb4d-24c3-11ea-8dc9-02cea54b2b40",
+                "uid": "63a3d195-24c3-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1c/vol-0c0b188df5fd56a3e"
+                },
+                "capacity": {
+                    "storage": "10Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-kafka-0",
+                    "namespace": "kafka",
+                    "resourceVersion": "15541",
+                    "uid": "5d5dbb4d-24c3-11ea-8dc9-02cea54b2b40"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "kafka-broker",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolume",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T14:00:14Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1a"
+                },
+                "name": "pvc-5d603152-24c3-11ea-8dc9-02cea54b2b40",
+                "resourceVersion": "15574",
+                "selfLink": "/api/v1/persistentvolumes/pvc-5d603152-24c3-11ea-8dc9-02cea54b2b40",
+                "uid": "60a19b9e-24c3-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1a/vol-09e401e232720798c"
+                },
+                "capacity": {
+                    "storage": "10Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-kafka-1",
+                    "namespace": "kafka",
+                    "resourceVersion": "15549",
+                    "uid": "5d603152-24c3-11ea-8dc9-02cea54b2b40"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1a"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "kafka-broker",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolume",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T13:46:45Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-78e30c76-24c1-11ea-8dc9-02cea54b2b40",
+                "resourceVersion": "13969",
+                "selfLink": "/api/v1/persistentvolumes/pvc-78e30c76-24c1-11ea-8dc9-02cea54b2b40",
+                "uid": "7e3ec6c8-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1c/vol-08377d5c5ed161447"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-pzoo-0",
+                    "namespace": "kafka",
+                    "resourceVersion": "13950",
+                    "uid": "78e30c76-24c1-11ea-8dc9-02cea54b2b40"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Retain",
+                "storageClassName": "kafka-zookeeper",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolume",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T13:46:45Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1a"
+                },
+                "name": "pvc-78e501cf-24c1-11ea-8dc9-02cea54b2b40",
+                "resourceVersion": "13973",
+                "selfLink": "/api/v1/persistentvolumes/pvc-78e501cf-24c1-11ea-8dc9-02cea54b2b40",
+                "uid": "7e402b8c-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1a/vol-01a5a48661c5f08d3"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-pzoo-1",
+                    "namespace": "kafka",
+                    "resourceVersion": "13949",
+                    "uid": "78e501cf-24c1-11ea-8dc9-02cea54b2b40"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1a"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Retain",
+                "storageClassName": "kafka-zookeeper",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": "",
+        "selfLink": ""
+    }
+}

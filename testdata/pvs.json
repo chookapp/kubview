@@ -1,0 +1,193 @@
+kubectl --namespace=kafka get pvc -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T14:00:09Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "kafka"
+                },
+                "name": "data-kafka-0",
+                "namespace": "kafka",
+                "resourceVersion": "15596",
+                "selfLink": "/api/v1/namespaces/kafka/persistentvolumeclaims/data-kafka-0",
+                "uid": "5d5dbb4d-24c3-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "10Gi"
+                    }
+                },
+                "storageClassName": "kafka-broker",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-5d5dbb4d-24c3-11ea-8dc9-02cea54b2b40"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "10Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T14:00:09Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "kafka"
+                },
+                "name": "data-kafka-1",
+                "namespace": "kafka",
+                "resourceVersion": "15577",
+                "selfLink": "/api/v1/namespaces/kafka/persistentvolumeclaims/data-kafka-1",
+                "uid": "5d603152-24c3-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "10Gi"
+                    }
+                },
+                "storageClassName": "kafka-broker",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-5d603152-24c3-11ea-8dc9-02cea54b2b40"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "10Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T13:46:36Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "zookeeper",
+                    "storage": "persistent"
+                },
+                "name": "data-pzoo-0",
+                "namespace": "kafka",
+                "resourceVersion": "13971",
+                "selfLink": "/api/v1/namespaces/kafka/persistentvolumeclaims/data-pzoo-0",
+                "uid": "78e30c76-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "kafka-zookeeper",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-78e30c76-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-22T13:46:36Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "zookeeper",
+                    "storage": "persistent"
+                },
+                "name": "data-pzoo-1",
+                "namespace": "kafka",
+                "resourceVersion": "13975",
+                "selfLink": "/api/v1/namespaces/kafka/persistentvolumeclaims/data-pzoo-1",
+                "uid": "78e501cf-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "kafka-zookeeper",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-78e501cf-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": "",
+        "selfLink": ""
+    }
+}

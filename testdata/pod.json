@@ -1,0 +1,1195 @@
+kubectl --namespace=kafka get pods -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kafka-listener-outside-host": "192.168.4.135",
+                    "kafka-listener-outside-port": "32400",
+                    "kubernetes.io/psp": "eks.privileged"
+                },
+                "creationTimestamp": "2019-12-22T14:09:49Z",
+                "generateName": "kafka-",
+                "labels": {
+                    "app": "kafka",
+                    "controller-revision-hash": "kafka-6cd4c4d4bb",
+                    "kafka-broker-id": "0",
+                    "kafka-broker-rack": "eu-central-1c",
+                    "statefulset.kubernetes.io/pod-name": "kafka-0"
+                },
+                "name": "kafka-0",
+                "namespace": "kafka",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "StatefulSet",
+                        "name": "kafka",
+                        "uid": "b7065390-24c4-11ea-8dc9-02cea54b2b40"
+                    }
+                ],
+                "resourceVersion": "16697",
+                "selfLink": "/api/v1/namespaces/kafka/pods/kafka-0",
+                "uid": "b70982f3-24c4-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "./bin/kafka-server-start.sh",
+                            "/etc/kafka/server.properties"
+                        ],
+                        "env": [
+                            {
+                                "name": "CLASSPATH",
+                                "value": "/opt/kafka/libs/extensions/*"
+                            },
+                            {
+                                "name": "KAFKA_LOG4J_OPTS",
+                                "value": "-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+                            },
+                            {
+                                "name": "JMX_PORT",
+                                "value": "5555"
+                            }
+                        ],
+                        "image": "solsson/kafka:2.3.0@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "sh",
+                                        "-ce",
+                                        "kill -s TERM 1; while $(kill -0 1 2\u003e/dev/null); do sleep 1; done"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "broker",
+                        "ports": [
+                            {
+                                "containerPort": 9092,
+                                "name": "inside",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 9094,
+                                "name": "outside",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 5555,
+                                "name": "jmx",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 9092
+                            },
+                            "timeoutSeconds": 10
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "600Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "100Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/var/lib/kafka/data",
+                                "name": "data"
+                            },
+                            {
+                                "mountPath": "/opt/kafka/libs/extensions",
+                                "name": "extensions"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "kafka-0",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/bash",
+                            "/etc/kafka-configmap/init.sh"
+                        ],
+                        "env": [
+                            {
+                                "name": "NODE_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "spec.nodeName"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "POD_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.name"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "POD_NAMESPACE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.namespace"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "init-config",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka-configmap",
+                                "name": "configmap"
+                            },
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/opt/kafka/libs/extensions",
+                                "name": "extensions"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "ip-192-168-4-135.eu-central-1.compute.internal",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "broker",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-kafka-0"
+                        }
+                    },
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "broker-config"
+                        },
+                        "name": "configmap"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "config"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "extensions"
+                    },
+                    {
+                        "name": "default-token-2vtcm",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-2vtcm"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:09:54Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:09:57Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:09:57Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:09:49Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://439c43d791c0fcedcbce53d27f334e336ca27fe2fd15d0776cc74bde81ad97b2",
+                        "image": "sha256:2ddba2afc33ca5a30656a08e583b0bf77abf2ab94a9d75cd0886db257ec2079b",
+                        "imageID": "docker-pullable://solsson/kafka@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "lastState": {},
+                        "name": "broker",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2019-12-22T14:09:54Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "192.168.4.135",
+                "initContainerStatuses": [
+                    {
+                        "containerID": "docker://9e06096293181e1c1435756d8607ad231a1d12a1fdc288695dfc8ca11e7232d6",
+                        "image": "sha256:31d971e220823973568c698518bc319e5aed1bcf65d122f410c2a7ab65fc142e",
+                        "imageID": "docker-pullable://solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "lastState": {},
+                        "name": "init-config",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "terminated": {
+                                "containerID": "docker://9e06096293181e1c1435756d8607ad231a1d12a1fdc288695dfc8ca11e7232d6",
+                                "exitCode": 0,
+                                "finishedAt": "2019-12-22T14:09:53Z",
+                                "reason": "Completed",
+                                "startedAt": "2019-12-22T14:09:53Z"
+                            }
+                        }
+                    }
+                ],
+                "phase": "Running",
+                "podIP": "192.168.13.112",
+                "qosClass": "Burstable",
+                "startTime": "2019-12-22T14:09:49Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kafka-listener-outside-host": "192.168.47.102",
+                    "kafka-listener-outside-port": "32401",
+                    "kubernetes.io/psp": "eks.privileged"
+                },
+                "creationTimestamp": "2019-12-22T14:09:49Z",
+                "generateName": "kafka-",
+                "labels": {
+                    "app": "kafka",
+                    "controller-revision-hash": "kafka-6cd4c4d4bb",
+                    "kafka-broker-id": "1",
+                    "kafka-broker-rack": "eu-central-1a",
+                    "statefulset.kubernetes.io/pod-name": "kafka-1"
+                },
+                "name": "kafka-1",
+                "namespace": "kafka",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "StatefulSet",
+                        "name": "kafka",
+                        "uid": "b7065390-24c4-11ea-8dc9-02cea54b2b40"
+                    }
+                ],
+                "resourceVersion": "21501",
+                "selfLink": "/api/v1/namespaces/kafka/pods/kafka-1",
+                "uid": "b70adbcf-24c4-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "./bin/kafka-server-start.sh",
+                            "/etc/kafka/server.properties"
+                        ],
+                        "env": [
+                            {
+                                "name": "CLASSPATH",
+                                "value": "/opt/kafka/libs/extensions/*"
+                            },
+                            {
+                                "name": "KAFKA_LOG4J_OPTS",
+                                "value": "-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+                            },
+                            {
+                                "name": "JMX_PORT",
+                                "value": "5555"
+                            }
+                        ],
+                        "image": "solsson/kafka:2.3.0@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "sh",
+                                        "-ce",
+                                        "kill -s TERM 1; while $(kill -0 1 2\u003e/dev/null); do sleep 1; done"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "broker",
+                        "ports": [
+                            {
+                                "containerPort": 9092,
+                                "name": "inside",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 9094,
+                                "name": "outside",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 5555,
+                                "name": "jmx",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "tcpSocket": {
+                                "port": 9092
+                            },
+                            "timeoutSeconds": 10
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "600Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "100Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/var/lib/kafka/data",
+                                "name": "data"
+                            },
+                            {
+                                "mountPath": "/opt/kafka/libs/extensions",
+                                "name": "extensions"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "kafka-1",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/bash",
+                            "/etc/kafka-configmap/init.sh"
+                        ],
+                        "env": [
+                            {
+                                "name": "NODE_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "spec.nodeName"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "POD_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.name"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "POD_NAMESPACE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.namespace"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "init-config",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka-configmap",
+                                "name": "configmap"
+                            },
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/opt/kafka/libs/extensions",
+                                "name": "extensions"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "ip-192-168-47-102.eu-central-1.compute.internal",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "broker",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-kafka-1"
+                        }
+                    },
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "broker-config"
+                        },
+                        "name": "configmap"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "config"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "extensions"
+                    },
+                    {
+                        "name": "default-token-2vtcm",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-2vtcm"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:09:54Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:58:34Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:58:34Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T14:09:49Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://23f7ea4de4f2f43bf92abc4e20bac3e0ccd1bc9441613f7f1f56fe8b7d96cff2",
+                        "image": "sha256:2ddba2afc33ca5a30656a08e583b0bf77abf2ab94a9d75cd0886db257ec2079b",
+                        "imageID": "docker-pullable://solsson/kafka@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "lastState": {
+                            "terminated": {
+                                "containerID": "docker://7614721459c98187e52adc28a100670a5e3a76eff98b53a45413fbd2db5b1812",
+                                "exitCode": 1,
+                                "finishedAt": "2019-12-22T14:58:17Z",
+                                "reason": "Error",
+                                "startedAt": "2019-12-22T14:58:11Z"
+                            }
+                        },
+                        "name": "broker",
+                        "ready": true,
+                        "restartCount": 2,
+                        "state": {
+                            "running": {
+                                "startedAt": "2019-12-22T14:58:30Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "192.168.47.102",
+                "initContainerStatuses": [
+                    {
+                        "containerID": "docker://d653dea650c2a3d51917315d81da377e1a70f3502c1182558b1459d8d9ccb0ff",
+                        "image": "sha256:31d971e220823973568c698518bc319e5aed1bcf65d122f410c2a7ab65fc142e",
+                        "imageID": "docker-pullable://solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "lastState": {},
+                        "name": "init-config",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "terminated": {
+                                "containerID": "docker://d653dea650c2a3d51917315d81da377e1a70f3502c1182558b1459d8d9ccb0ff",
+                                "exitCode": 0,
+                                "finishedAt": "2019-12-22T14:09:53Z",
+                                "reason": "Completed",
+                                "startedAt": "2019-12-22T14:09:53Z"
+                            }
+                        }
+                    }
+                ],
+                "phase": "Running",
+                "podIP": "192.168.45.60",
+                "qosClass": "Burstable",
+                "startTime": "2019-12-22T14:09:49Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/psp": "eks.privileged"
+                },
+                "creationTimestamp": "2019-12-22T13:46:36Z",
+                "generateName": "pzoo-",
+                "labels": {
+                    "app": "zookeeper",
+                    "controller-revision-hash": "pzoo-6dcdf6b87b",
+                    "statefulset.kubernetes.io/pod-name": "pzoo-0",
+                    "storage": "persistent"
+                },
+                "name": "pzoo-0",
+                "namespace": "kafka",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "StatefulSet",
+                        "name": "pzoo",
+                        "uid": "78e0e4dc-24c1-11ea-ac88-0ad449621476"
+                    }
+                ],
+                "resourceVersion": "14051",
+                "selfLink": "/api/v1/namespaces/kafka/pods/pzoo-0",
+                "uid": "78e41417-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "./bin/zookeeper-server-start.sh",
+                            "/etc/kafka/zookeeper.properties"
+                        ],
+                        "env": [
+                            {
+                                "name": "KAFKA_LOG4J_OPTS",
+                                "value": "-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+                            }
+                        ],
+                        "image": "solsson/kafka:2.3.0@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "sh",
+                                        "-ce",
+                                        "kill -s TERM 1; while $(kill -0 1 2\u003e/dev/null); do sleep 1; done"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "zookeeper",
+                        "ports": [
+                            {
+                                "containerPort": 2181,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 2888,
+                                "name": "peer",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 3888,
+                                "name": "leader-election",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "exec": {
+                                "command": [
+                                    "/bin/sh",
+                                    "-c",
+                                    "[ \"imok\" = \"$(echo ruok | nc -w 1 -q 1 127.0.0.1 2181)\" ]"
+                                ]
+                            },
+                            "failureThreshold": 3,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "120Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "100Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/var/lib/zookeeper",
+                                "name": "data"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "pzoo-0",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/bash",
+                            "/etc/kafka-configmap/init.sh"
+                        ],
+                        "image": "solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "init-config",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka-configmap",
+                                "name": "configmap"
+                            },
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/var/lib/zookeeper",
+                                "name": "data"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "ip-192-168-4-135.eu-central-1.compute.internal",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "pzoo",
+                "terminationGracePeriodSeconds": 10,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-pzoo-0"
+                        }
+                    },
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "zookeeper-config"
+                        },
+                        "name": "configmap"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "config"
+                    },
+                    {
+                        "name": "default-token-2vtcm",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-2vtcm"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:47:04Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:47:09Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:47:09Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:46:54Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://182cbbc5e292b22393f620d331fb39ddc6a4876dd12c258799b5f5eb2dc696b3",
+                        "image": "sha256:2ddba2afc33ca5a30656a08e583b0bf77abf2ab94a9d75cd0886db257ec2079b",
+                        "imageID": "docker-pullable://solsson/kafka@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "lastState": {},
+                        "name": "zookeeper",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2019-12-22T13:47:05Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "192.168.4.135",
+                "initContainerStatuses": [
+                    {
+                        "containerID": "docker://e7b47750b2aca1fd0f037b86cb7ef564e52abcc63ac7df7685988dbc81271c70",
+                        "image": "sha256:31d971e220823973568c698518bc319e5aed1bcf65d122f410c2a7ab65fc142e",
+                        "imageID": "docker-pullable://solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "lastState": {},
+                        "name": "init-config",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "terminated": {
+                                "containerID": "docker://e7b47750b2aca1fd0f037b86cb7ef564e52abcc63ac7df7685988dbc81271c70",
+                                "exitCode": 0,
+                                "finishedAt": "2019-12-22T13:47:04Z",
+                                "reason": "Completed",
+                                "startedAt": "2019-12-22T13:47:04Z"
+                            }
+                        }
+                    }
+                ],
+                "phase": "Running",
+                "podIP": "192.168.30.205",
+                "qosClass": "Burstable",
+                "startTime": "2019-12-22T13:46:54Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/psp": "eks.privileged"
+                },
+                "creationTimestamp": "2019-12-22T13:46:36Z",
+                "generateName": "pzoo-",
+                "labels": {
+                    "app": "zookeeper",
+                    "controller-revision-hash": "pzoo-6dcdf6b87b",
+                    "statefulset.kubernetes.io/pod-name": "pzoo-1",
+                    "storage": "persistent"
+                },
+                "name": "pzoo-1",
+                "namespace": "kafka",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "StatefulSet",
+                        "name": "pzoo",
+                        "uid": "78e0e4dc-24c1-11ea-ac88-0ad449621476"
+                    }
+                ],
+                "resourceVersion": "14028",
+                "selfLink": "/api/v1/namespaces/kafka/pods/pzoo-1",
+                "uid": "78e6e4f0-24c1-11ea-8dc9-02cea54b2b40"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "command": [
+                            "./bin/zookeeper-server-start.sh",
+                            "/etc/kafka/zookeeper.properties"
+                        ],
+                        "env": [
+                            {
+                                "name": "KAFKA_LOG4J_OPTS",
+                                "value": "-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+                            }
+                        ],
+                        "image": "solsson/kafka:2.3.0@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "imagePullPolicy": "IfNotPresent",
+                        "lifecycle": {
+                            "preStop": {
+                                "exec": {
+                                    "command": [
+                                        "sh",
+                                        "-ce",
+                                        "kill -s TERM 1; while $(kill -0 1 2\u003e/dev/null); do sleep 1; done"
+                                    ]
+                                }
+                            }
+                        },
+                        "name": "zookeeper",
+                        "ports": [
+                            {
+                                "containerPort": 2181,
+                                "name": "client",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 2888,
+                                "name": "peer",
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 3888,
+                                "name": "leader-election",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "exec": {
+                                "command": [
+                                    "/bin/sh",
+                                    "-c",
+                                    "[ \"imok\" = \"$(echo ruok | nc -w 1 -q 1 127.0.0.1 2181)\" ]"
+                                ]
+                            },
+                            "failureThreshold": 3,
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 1
+                        },
+                        "resources": {
+                            "limits": {
+                                "memory": "120Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "100Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/var/lib/zookeeper",
+                                "name": "data"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "pzoo-1",
+                "initContainers": [
+                    {
+                        "command": [
+                            "/bin/bash",
+                            "/etc/kafka-configmap/init.sh"
+                        ],
+                        "image": "solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "init-config",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/etc/kafka-configmap",
+                                "name": "configmap"
+                            },
+                            {
+                                "mountPath": "/etc/kafka",
+                                "name": "config"
+                            },
+                            {
+                                "mountPath": "/var/lib/zookeeper",
+                                "name": "data"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "default-token-2vtcm",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "nodeName": "ip-192-168-47-102.eu-central-1.compute.internal",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "subdomain": "pzoo",
+                "terminationGracePeriodSeconds": 10,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "data",
+                        "persistentVolumeClaim": {
+                            "claimName": "data-pzoo-1"
+                        }
+                    },
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "zookeeper-config"
+                        },
+                        "name": "configmap"
+                    },
+                    {
+                        "emptyDir": {},
+                        "name": "config"
+                    },
+                    {
+                        "name": "default-token-2vtcm",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "default-token-2vtcm"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:46:53Z",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:47:02Z",
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:47:02Z",
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2019-12-22T13:46:47Z",
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "docker://a875925b287d60a1e139c28e6b685226a098a7af68842527663d1b83042a62ab",
+                        "image": "sha256:2ddba2afc33ca5a30656a08e583b0bf77abf2ab94a9d75cd0886db257ec2079b",
+                        "imageID": "docker-pullable://solsson/kafka@sha256:b59603a8c0645f792fb54e9571500e975206352a021d6a116b110945ca6c3a1d",
+                        "lastState": {},
+                        "name": "zookeeper",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "running": {
+                                "startedAt": "2019-12-22T13:46:53Z"
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "192.168.47.102",
+                "initContainerStatuses": [
+                    {
+                        "containerID": "docker://392a05390740238ce989a6da33f11f95f548a8dfe18836543ada3002fad9f964",
+                        "image": "sha256:31d971e220823973568c698518bc319e5aed1bcf65d122f410c2a7ab65fc142e",
+                        "imageID": "docker-pullable://solsson/kafka-initutils@sha256:f6d9850c6c3ad5ecc35e717308fddb47daffbde18eb93e98e031128fe8b899ef",
+                        "lastState": {},
+                        "name": "init-config",
+                        "ready": true,
+                        "restartCount": 0,
+                        "state": {
+                            "terminated": {
+                                "containerID": "docker://392a05390740238ce989a6da33f11f95f548a8dfe18836543ada3002fad9f964",
+                                "exitCode": 0,
+                                "finishedAt": "2019-12-22T13:46:52Z",
+                                "reason": "Completed",
+                                "startedAt": "2019-12-22T13:46:52Z"
+                            }
+                        }
+                    }
+                ],
+                "phase": "Running",
+                "podIP": "192.168.62.202",
+                "qosClass": "Burstable",
+                "startTime": "2019-12-22T13:46:47Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": "",
+        "selfLink": ""
+    }
+}
