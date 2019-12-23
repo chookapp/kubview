@@ -1,4 +1,3 @@
-kubectl --namespace=kafka get pvc -o json
 {
     "apiVersion": "v1",
     "items": [

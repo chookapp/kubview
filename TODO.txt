@@ -1,0 +1,8 @@
+get:
+- node.json
+
+Ask Oded:
+- how he connects the ZVM to k8s. 
+- how could I connect to his ZVM.
+
+https://kubernetes.io/docs/tasks/administer-cluster/access-cluster-api/

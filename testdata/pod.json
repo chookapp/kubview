@@ -1,4 +1,3 @@
-kubectl --namespace=kafka get pods -o json
 {
     "apiVersion": "v1",
     "items": [
