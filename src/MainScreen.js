@@ -2,9 +2,9 @@ import React from 'react';
 
 class MainScreen extends React.Component {
     render() {
-      return (
+        return (
         <h2>Gil</h2>
-      );
+        );
     }
 }
 
