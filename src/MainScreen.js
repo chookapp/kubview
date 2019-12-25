@@ -19,14 +19,13 @@ class MainScreen extends React.Component {
             statefullsetes: { }
         }
     }
-    
+
     componentDidMount() {
         const k8p = new k8sproxy();
         
         const p1 = k8p.listNamespacedPod("default").then((data) => {this.data.pods = data});
 
         Promise.all([p1]).then(this.calcNewState());
-
     }
 
     calcNewState() {
@@ -37,6 +36,7 @@ class MainScreen extends React.Component {
         
         return (
         <h2>Gil 
+            {Object.keys(this.state.pods).length}
         </h2>
         );
     }
