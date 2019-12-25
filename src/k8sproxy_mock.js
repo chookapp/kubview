@@ -3,11 +3,11 @@ const axios = require('axios');
 class k8sproxy {
 
         listNamespacedPod(ns) {
-            axios.get('../testdata/pod.json').then((response) => {
-                    return response.data;
+            return axios.get('../testdata/pod.json').then((response) => {
+                return response.data;
             }).catch(function (error) {
                 console.log(error);
-              })
+            })
         }
     }
 
