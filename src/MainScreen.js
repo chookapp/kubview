@@ -22,10 +22,13 @@ class MainScreen extends React.Component {
 
     componentDidMount() {
         const k8p = new k8sproxy();
-        
-        const p1 = k8p.listNamespacedPod("default").then((data) => {this.data.pods = data});
+        let promises = [];
 
-        Promise.all([p1]).then(this.calcNewState());
+        promises.push(k8p.listNamespacedPod("default").then(
+            (data) => {this.data['pods'] = data}            
+        ));
+
+        Promise.all(promises).then(() => {this.calcNewState()});
     }
 
     calcNewState() {
