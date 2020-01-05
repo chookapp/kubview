@@ -10,8 +10,8 @@ class k8sproxy {
             this.k8sApi = kc.makeApiClient(k8s.CoreV1Api);
         }
 
-        listNamespacedPod(ns) {
-            this.k8sApi.listNamespacedPod(ns).then((res) => {
+        listPodForAllNamespaces() {
+            this.k8sApi.listPodForAllNamespaces().then((res) => {
                 return res.body;
             });
         }

@@ -2,7 +2,7 @@ const axios = require('axios');
 
 class k8sproxy {
 
-        listNamespacedPod(ns) {
+    listPodForAllNamespaces() {
             return axios.get('../testdata/pod.json').then((response) => {
                 return(response.data);
             }).catch(function (error) {
