@@ -8,14 +8,43 @@ function ItemStatus(props) {
     const status = props.item.status
     if(status === "Running")
         color = "green"    
-    return (        
-    <div style={{display: "inline-block", width: "100px", color: color}}>{status}</div>
+    return (
+    <div style={{display: "inline-block", width: "100px", float: "right", color: color}}>{status}</div>
     );
 }
 
 function ItemName(props) {
     return (
-    <div style={{display: "inline-block", width: "100px"}}>{props.item.name}</div>
+    <div style={{display: "inline-block", width: "300px"}}>{props.item.name}</div>
+    );
+}
+
+function ItemKind(props) {
+    return (
+    <div style={{display: "inline-block", width: "100px", float: "left"}}><i>{props.item.kind}</i></div>
+    );
+}
+
+
+function Pvc(props) {
+    const pvc = props.pvc;
+    
+    return (
+    <div> 
+        <ItemKind item={pvc}/> <ItemName item={pvc}/> <ItemStatus item={pvc}/>
+        <Pv pv={pvc.pv}/>
+    </div>
+    );
+}
+
+
+function Pv(props) {
+    const pv = props.pv;
+    
+    return (
+    <div> 
+        <ItemKind item={pv}/> <ItemName item={pv}/> <ItemStatus item={pv}/>
+    </div>
     );
 }
 
@@ -24,9 +53,15 @@ function Pod(props) {
     const pod = props.pod;
     
     return (
-    <div> {pod.kind} <ItemName item={pod}/> <ItemStatus item={pod}/></div>
+    <div> 
+        <ItemKind item={pod}/> <ItemName item={pod}/> <ItemStatus item={pod}/>
+        <ul>
+            {pod.pvcs.map((pvc) => <li key={pvc.id}><Pvc pvc={pvc}/></li>)} 
+            {pod.pvcNames.map((pvc) => <li key={pvc.name}>{pvc}</li>)} 
+        </ul>
+    </div>
     );
-  }
+}
 
 
 function StatefullSet(props) {
@@ -35,11 +70,11 @@ function StatefullSet(props) {
     <li key={pod.id}><Pod pod={pod}/></li>
     );
     return (
-      <div> {ss.kind} <ItemName item={ss}/> <ItemStatus item={ss}/>
+      <div> <ItemKind item={ss}/> <ItemName item={ss}/> <ItemStatus item={ss}/>
       <ul>{pods}</ul>
       </div>
     );
-  }
+}
 
 class MainScreen extends React.Component {
 
@@ -92,11 +127,12 @@ class MainScreen extends React.Component {
 
             if (newItem.kind === "Pod") {
                 newItem.node = item.spec.nodeName
-                newItem.ownerId = item.metadata.ownerReferences[0].uid
-                newItem.vols = []
+                newItem.ownerIds = item.metadata.ownerReferences.map((or) => or.uid)
+                newItem.pvcNames = []
+                newItem.pvcs = []
                 for (let vol of item.spec.volumes) {
                     if ("persistentVolumeClaim" in vol) {
-                        newItem.vols.push(vol.persistentVolumeClaim.claimName)
+                        newItem.pvcNames.push(vol.persistentVolumeClaim.claimName)
                     }
                 }
             }
@@ -104,10 +140,12 @@ class MainScreen extends React.Component {
             if (newItem.kind === "PersistentVolumeClaim") {
                 // newItem.size = item.spec.resources.requests.storage
                 newItem.pv = item.spec.volumeName
+                newItem.kind = "PVC"
             }
 
             if (newItem.kind === "PersistentVolume") {
                 newItem.size = item.spec.capacity.storage
+                newItem.kind = "PersistentVol"
             }   
             ret.push(newItem)
         }
@@ -118,7 +156,7 @@ class MainScreen extends React.Component {
         let ret = [];
         let remains = [];
         for(let pod of pods) {
-            if(pod.ownerId === id)
+            if(pod.ownerIds.indexOf(id) !== -1)
                 ret.push(pod)
             else
                 remains.push(pod)
@@ -127,33 +165,81 @@ class MainScreen extends React.Component {
         return [ret, remains];
     }
 
+    extractPvcs(pod, pvcs) {
+        let remains = [];
+
+        for(let pvc of pvcs) {
+            const idx = pod.pvcNames.indexOf(pvc.name)
+            if(idx === -1)
+            {
+                remains.push(pvc)
+            }
+            else
+            {
+                pod.pvcs.push(pvc);
+                pod.pvcNames.splice(idx, 1);
+            }
+        }
+
+        return remains;
+    }
+
+
+    extractPvs(pvc, pvs) {
+        let remains = [];
+
+        for(let pv of pvs) {
+            if(pvc.pv === pv.name)
+            {
+                remains.push(pv)
+            }
+            else
+            {
+                pvc.pv = pv
+            }
+        }
+
+        return remains;
+    }
 
     render() {
 
-        //let pvcs = this.state.data.pvcs;
-
-
-
+        let pvs = this.state.data.pvs;
+        let pvcs = this.state.data.pvcs;
         let pods = this.state.data.pods;
-
-
         let statefullsetes = this.state.data.statefullsetes;
+
+        for(let pvc of pvcs) {
+            pvs = this.extractPvs(pvc, pvs)
+        }
+
+        for(let pod of pods) {
+            pvcs = this.extractPvcs(pod, pvcs)
+        }
+        
         for(let ss of statefullsetes) {
             const [children, remains] = this.getChildPods(ss.id, pods);
             pods = remains
             ss.pods = children
         }
 
-
-        
-
-        // return (
-        //     <h2>Gil
-        //     {Object.keys(this.state.pods).length}
-        //     </h2>
-        // );
         return(
+            <div style={{display: "inline-block", width: "600px"}}>
+
+            Stateful sets:
             <ul>{statefullsetes.map((ss) => <li key={ss.id}><StatefullSet ss={ss}/></li>)}</ul>
+
+            Unattached pods:
+            <ul>{pods.map((pod) => <li key={pod.id}><Pod pod={pod}/></li>)}</ul>
+
+            Unattached PVCs:
+            <ul>{pvcs.map((pvc) => <li key={pvc.id}><Pvc pvc={pvc}/></li>)}</ul>
+
+            Unattached persistant volumes:
+            <ul>{pvs.map((pv) => <li key={pv.id}><Pv pv={pv}/></li>)}</ul>
+            </div>
+
+            
         );
     }
 }
