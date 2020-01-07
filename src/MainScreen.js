@@ -1,16 +1,21 @@
 import React from 'react';
 import k8sproxy from './k8sproxy_mock.js';
 
+import "./style.css"
+
 function ItemStatus(props) {
-    return (
-    //<div style={{display: "inline-block;"}}>{props.item.status}</div>
-    <span>{props.item.status}</span>
+    let color = "black"
+    const status = props.item.status
+    if(status === "Running")
+        color = "green"    
+    return (        
+    <div style={{display: "inline-block", width: "100px", color: color}}>{status}</div>
     );
 }
 
 function ItemName(props) {
     return (
-    <span>{props.item.name}</span>
+    <div style={{display: "inline-block", width: "100px"}}>{props.item.name}</div>
     );
 }
 
@@ -27,7 +32,7 @@ function Pod(props) {
 function StatefullSet(props) {
     const ss = props.ss;
     const pods = ss.pods.map((pod) =>
-    <li><Pod pod={pod}/></li>
+    <li key={pod.id}><Pod pod={pod}/></li>
     );
     return (
       <div> {ss.kind} <ItemName item={ss}/> <ItemStatus item={ss}/>
@@ -87,7 +92,7 @@ class MainScreen extends React.Component {
 
             if (newItem.kind === "Pod") {
                 newItem.node = item.spec.nodeName
-                newItem.ownerId = item.metadata.ownerReferences.uid
+                newItem.ownerId = item.metadata.ownerReferences[0].uid
                 newItem.vols = []
                 for (let vol of item.spec.volumes) {
                     if ("persistentVolumeClaim" in vol) {
@@ -148,7 +153,7 @@ class MainScreen extends React.Component {
         //     </h2>
         // );
         return(
-            <ul>{statefullsetes.map((ss) => <li><StatefullSet ss={ss}/></li>)}</ul>
+            <ul>{statefullsetes.map((ss) => <li key={ss.id}><StatefullSet ss={ss}/></li>)}</ul>
         );
     }
 }
