@@ -120,6 +120,7 @@ class MainScreen extends React.Component {
 
         this.state =
         {
+            groupBy: "none",
             data:
             {
                 pods: [],
@@ -240,12 +241,45 @@ class MainScreen extends React.Component {
         return remains;
     }
 
+    getNodes(data) {
+        let nodes = []
+        for(let entry in data) {
+            for(let item of data[entry]) {
+                const node = item.node
+                if(node === undefined)
+                    continue
+                if(nodes.indexOf(node) !== -1)
+                    continue
+                nodes.push(node)
+            }
+        }
+        return nodes
+    }
+
+    getNamespaces(data) {
+        let namespaces = []
+        for(let entry in data) {
+            for(let item of data[entry]) {
+                const namespace = item.namespace
+                if(namespace === undefined)
+                    continue
+                if(namespaces.indexOf(namespace) !== -1)
+                    continue
+                namespaces.push(namespace)
+            }
+        }
+        return namespaces
+    }
+
     render() {
 
         let pvs = this.state.data.pvs;
         let pvcs = this.state.data.pvcs;
         let pods = this.state.data.pods;
         let statefullsetes = this.state.data.statefullsetes;
+
+        let nodes = this.getNodes(this.state.data)
+        let namespaces = this.getNamespaces(this.state.data)
 
         for(let pvc of pvcs) {
             pvs = this.extractPvs(pvc, pvs)
@@ -261,11 +295,18 @@ class MainScreen extends React.Component {
             ss.pods = children
         }
 
+// {this.GetGroupByElements().map((elem) =>
+
         return(
             <div>
 
+            
+
             Stateful sets:
-            <table><tbody>{statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss}/>)}</tbody></table>
+            <table><tbody>
+            
+                {statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss}/>)}
+            </tbody></table>
            
             {pods.length > 0 &&
             <div>
