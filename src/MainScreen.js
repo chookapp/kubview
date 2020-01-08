@@ -9,19 +9,39 @@ function ItemStatus(props) {
     if(status === "Running")
         color = "green"    
     return (
-    <div style={{display: "inline-block", width: "100px", float: "right", color: color}}>{status}</div>
+    <div style={{color: color}}>{status}</div>
     );
 }
 
 function ItemName(props) {
     return (
-    <div style={{display: "inline-block", width: "300px"}}>{props.item.name}</div>
+    <div>{props.item.name}</div>
     );
 }
 
 function ItemKind(props) {
     return (
-    <div style={{display: "inline-block", width: "100px", float: "left"}}><i>{props.item.kind}</i></div>
+    <div><i>{props.item.kind}</i></div>
+    );
+}
+
+
+
+
+function ItemRow(props) {
+    const item = props.item
+    return (
+        <tr><td><ItemKind item={item}/></td><td><ItemName item={item}/></td><td><ItemStatus item={item}/></td></tr>
+        );
+}
+
+function Pv(props) {
+    const pv = props.pv;
+    
+    return (
+    <React.Fragment> 
+        <ItemRow item={pv}/>
+    </React.Fragment>
     );
 }
 
@@ -30,49 +50,35 @@ function Pvc(props) {
     const pvc = props.pvc;
     
     return (
-    <div> 
-        <ItemKind item={pvc}/> <ItemName item={pvc}/> <ItemStatus item={pvc}/>
+    <React.Fragment> 
+        <ItemRow item={pvc}/>
         <Pv pv={pvc.pv}/>
-    </div>
+    </React.Fragment>
     );
 }
-
-
-function Pv(props) {
-    const pv = props.pv;
-    
-    return (
-    <div> 
-        <ItemKind item={pv}/> <ItemName item={pv}/> <ItemStatus item={pv}/>
-    </div>
-    );
-}
-
 
 function Pod(props) {
     const pod = props.pod;
     
     return (
-    <div> 
-        <ItemKind item={pod}/> <ItemName item={pod}/> <ItemStatus item={pod}/>
-        <ul>
-            {pod.pvcs.map((pvc) => <li key={pvc.id}><Pvc pvc={pvc}/></li>)} 
-            {pod.pvcNames.map((pvc) => <li key={pvc.name}>{pvc}</li>)} 
-        </ul>
-    </div>
+    <React.Fragment> 
+        <ItemRow item={pod}/> 
+        {pod.pvcs.map((pvc) => <Pvc key={pvc.name} pvc={pvc}/>)} 
+        {/* {pod.pvcNames.map((pvc) => <li key={pvc.name}>{pvc}</li>)} */}
+    </React.Fragment>
     );
 }
 
 
 function StatefullSet(props) {
     const ss = props.ss;
-    const pods = ss.pods.map((pod) =>
-    <li key={pod.id}><Pod pod={pod}/></li>
-    );
+    
     return (
-      <div> <ItemKind item={ss}/> <ItemName item={ss}/> <ItemStatus item={ss}/>
-      <ul>{pods}</ul>
-      </div>
+    <React.Fragment>
+       <ItemRow item={ss}/> 
+       {ss.pods.map((pod) => <Pod key={pod.name} pod={pod}/>)}
+    </React.Fragment>
+      
     );
 }
 
@@ -224,10 +230,10 @@ class MainScreen extends React.Component {
         }
 
         return(
-            <div style={{display: "inline-block", width: "600px"}}>
+            <div>
 
             Stateful sets:
-            <ul>{statefullsetes.map((ss) => <li key={ss.id}><StatefullSet ss={ss}/></li>)}</ul>
+            <table><tbody>{statefullsetes.map((ss) => <StatefullSet key={ss.name} ss={ss}/>)}</tbody></table>
 
             Unattached pods:
             <ul>{pods.map((pod) => <li key={pod.id}><Pod pod={pod}/></li>)}</ul>
