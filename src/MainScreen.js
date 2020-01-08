@@ -9,19 +9,25 @@ function ItemStatus(props) {
     if(status === "Running")
         color = "green"    
     return (
-    <div style={{color: color}}>{status}</div>
+        <div style={{color: color}}>{status}</div>
     );
 }
 
 function ItemName(props) {
     return (
-    <div>{props.item.name}</div>
+        <div>{props.item.name}</div>
+    );
+}
+
+function ItemNamespace(props) {
+    return (
+        <div>{props.item.namespace}</div>
     );
 }
 
 function ItemKind(props) {
     return (
-    <div><i>{props.item.kind}</i></div>
+        <div><i>{props.item.kind}</i></div>
     );
 }
 
@@ -30,17 +36,37 @@ function ItemKind(props) {
 
 function ItemRow(props) {
     const item = props.item
+    const indent = props.indent
     return (
-        <tr><td><ItemKind item={item}/></td><td><ItemName item={item}/></td><td><ItemStatus item={item}/></td></tr>
-        );
+        <tr><td><ItemNamespace item={item}/></td><td><div style={{paddingLeft: indent*20}}><ItemName item={item}/></div></td><td><ItemKind item={item}/></td><td>{props.extra}</td><td><ItemStatus item={item}/></td></tr>
+    );
 }
+
+
+
+function CustomRow(props) {
+    let item = {}
+    item.namespace = props.namespace
+    item.kind = props.kind
+    item.name = props.name
+    item.status = props.status
+    
+    return (
+        <ItemRow item={item} indent={props.indent}></ItemRow>
+    );
+}
+
+CustomRow.defaultProps = {
+    status: 'unknown',
+};
 
 function Pv(props) {
     const pv = props.pv;
-    
+    const indent = props.indent === undefined ? 0 : props.indent
+
     return (
     <React.Fragment> 
-        <ItemRow item={pv}/>
+        <ItemRow item={pv} extra={pv.size} indent={indent}/>
     </React.Fragment>
     );
 }
@@ -48,39 +74,44 @@ function Pv(props) {
 
 function Pvc(props) {
     const pvc = props.pvc;
+    const indent = props.indent === undefined ? 0 : props.indent
     
     return (
     <React.Fragment> 
-        <ItemRow item={pvc}/>
-        <Pv pv={pvc.pv}/>
+        <ItemRow item={pvc} indent={indent}/>
+        <Pv pv={pvc.pv} indent={indent}/>
     </React.Fragment>
     );
 }
 
 function Pod(props) {
     const pod = props.pod;
+    const indent = props.indent === undefined ? 0 : props.indent
     
     return (
     <React.Fragment> 
-        <ItemRow item={pod}/> 
-        {pod.pvcs.map((pvc) => <Pvc key={pvc.name} pvc={pvc}/>)} 
-        {/* {pod.pvcNames.map((pvc) => <li key={pvc.name}>{pvc}</li>)} */}
+        <ItemRow item={pod} extra={pod.node} indent={indent}/> 
+        {pod.pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc} indent={indent+1}/>)} 
+        {pod.pvcNames.map((pvc) => <CustomRow key={pvc} kind="PV claim" name={pvc} indent={indent+1}/>)}
     </React.Fragment>
     );
 }
+
 
 
 function StatefullSet(props) {
     const ss = props.ss;
-    
+    const indent = props.indent === undefined ? 0 : props.indent
+
     return (
     <React.Fragment>
-       <ItemRow item={ss}/> 
-       {ss.pods.map((pod) => <Pod key={pod.name} pod={pod}/>)}
+       <ItemRow item={ss} indent={indent}/> 
+       {ss.pods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent+1}/>)}
     </React.Fragment>
       
     );
 }
+
 
 class MainScreen extends React.Component {
 
@@ -126,6 +157,7 @@ class MainScreen extends React.Component {
             newItem.namespace = item.metadata.namespace
             newItem.id = item.metadata.uid
             newItem.status = item.status.phase
+            newItem.key = newItem.namespace + ":" + newItem.name 
 
             if (newItem.kind === "StatefulSet") {                                
                 newItem.status = item.status.readyReplicas + "/" + item.status.replicas
@@ -146,7 +178,7 @@ class MainScreen extends React.Component {
             if (newItem.kind === "PersistentVolumeClaim") {
                 // newItem.size = item.spec.resources.requests.storage
                 newItem.pv = item.spec.volumeName
-                newItem.kind = "PVC"
+                newItem.kind = "PV claim"
             }
 
             if (newItem.kind === "PersistentVolume") {
@@ -197,11 +229,11 @@ class MainScreen extends React.Component {
         for(let pv of pvs) {
             if(pvc.pv === pv.name)
             {
-                remains.push(pv)
+                pvc.pv = pv
             }
             else
             {
-                pvc.pv = pv
+                remains.push(pv)
             }
         }
 
@@ -233,16 +265,29 @@ class MainScreen extends React.Component {
             <div>
 
             Stateful sets:
-            <table><tbody>{statefullsetes.map((ss) => <StatefullSet key={ss.name} ss={ss}/>)}</tbody></table>
-
+            <table><tbody>{statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss}/>)}</tbody></table>
+           
+            {pods.length > 0 &&
+            <div>
             Unattached pods:
-            <ul>{pods.map((pod) => <li key={pod.id}><Pod pod={pod}/></li>)}</ul>
+            <table><tbody>{pods.map((pod) => <Pod key={pod.key} pod={pod}/> )}</tbody></table>
+            </div>
+            }
 
+            {pvcs.length > 0 &&
+            <div>
             Unattached PVCs:
-            <ul>{pvcs.map((pvc) => <li key={pvc.id}><Pvc pvc={pvc}/></li>)}</ul>
+            <table><tbody>{pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc}/>)}</tbody></table>
+            </div>
+            }
 
+            {pvs.length > 0 &&
+            <div>
             Unattached persistant volumes:
-            <ul>{pvs.map((pv) => <li key={pv.id}><Pv pv={pv}/></li>)}</ul>
+            <table><tbody>{pvs.map((pv) => <Pv key={pv.key} pv={pv}/>)}</tbody></table>
+            </div>
+            }
+
             </div>
 
             
