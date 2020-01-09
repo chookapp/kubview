@@ -241,36 +241,15 @@ class MainScreen extends React.Component {
         return remains;
     }
 
-    getNodes(data) {
-        let nodes = []
-        for(let entry in data) {
-            for(let item of data[entry]) {
-                const node = item.node
-                if(node === undefined)
-                    continue
-                if(nodes.indexOf(node) !== -1)
-                    continue
-                nodes.push(node)
-            }
+    getUnique(data, entry) {
+        let vals = new Set();
+        for(const itemArr of Object.values(data)) {
+            itemArr.forEach((item) => vals.add(item[entry]))
         }
-        return nodes
+        vals.delete(undefined)
+        return Array.from(vals.values())
     }
-
-    getNamespaces(data) {
-        let namespaces = []
-        for(let entry in data) {
-            for(let item of data[entry]) {
-                const namespace = item.namespace
-                if(namespace === undefined)
-                    continue
-                if(namespaces.indexOf(namespace) !== -1)
-                    continue
-                namespaces.push(namespace)
-            }
-        }
-        return namespaces
-    }
-
+   
     render() {
 
         let pvs = this.state.data.pvs;
@@ -278,8 +257,10 @@ class MainScreen extends React.Component {
         let pods = this.state.data.pods;
         let statefullsetes = this.state.data.statefullsetes;
 
-        let nodes = this.getNodes(this.state.data)
-        let namespaces = this.getNamespaces(this.state.data)
+        let nodes = this.getUnique(this.state.data, "node")
+        let namespaces = this.getUnique(this.state.data, "namespace")
+
+        
 
         for(let pvc of pvcs) {
             pvs = this.extractPvs(pvc, pvs)
