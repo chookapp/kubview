@@ -8,7 +8,8 @@ function ItemStatus(props) {
     return (<div style={{ color: color }}>{status}</div>);
 }
 function ItemName(props) {
-    return (<div>{props.item.name}</div>);
+    const indent = props.indent;
+    return (<div style={{ paddingLeft: 10 + indent * 20, paddingRigth: 10 }}><b>{props.item.name}</b></div>);
 }
 function ItemNamespace(props) {
     return (<div>{props.item.namespace}</div>);
@@ -17,9 +18,8 @@ function ItemKind(props) {
     return (<div><i>{props.item.kind}</i></div>);
 }
 function ItemRow(props) {
-    const item = props.item;
-    const indent = props.indent;
-    return (<tr><td><ItemNamespace item={item} /></td><td><div style={{ paddingLeft: indent * 20 }}><ItemName item={item} /></div></td><td><ItemKind item={item} /></td><td>{props.extra}</td><td><ItemStatus item={item} /></td></tr>);
+    const item = props.item;    
+    return (<tr><td><ItemNamespace item={item} /></td><td><div><ItemName item={item} indent={props.indent}/></div></td><td><ItemKind item={item} /></td><td>{props.extra}</td><td><ItemStatus item={item} /></td></tr>);
 }
 
 function CustomRow(props) {
@@ -52,6 +52,9 @@ export function Pvc(props) {
 export function Pod(props) {
     const pod = props.pod;
     const indent = props.indent === undefined ? 0 : props.indent;
+    if(!props.groupBy(pod))
+        return null;
+
     return (<React.Fragment>
         <ItemRow item={pod} extra={pod.node} indent={indent} />
         {pod.pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc} indent={indent + 1} />)}
@@ -61,8 +64,15 @@ export function Pod(props) {
 export function StatefullSet(props) {
     const ss = props.ss;
     const indent = props.indent === undefined ? 0 : props.indent;
+    const pods = ss.pods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} groupBy={props.groupBy}/>)
+    if(pods.length === 0 && !props.groupBy(ss))
+        return null;
+
+    if(!props.filter(ss))
+        return null;
+
     return (<React.Fragment>
         <ItemRow item={ss} indent={indent} />
-        {ss.pods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} />)}
+        {pods}
     </React.Fragment>);
 }

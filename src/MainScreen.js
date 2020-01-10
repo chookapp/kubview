@@ -1,17 +1,26 @@
 import React from 'react';
 import k8sproxy from './k8sproxy_mock.js';
 
+import Select from 'react-select';
+
 import "./style.css"
 import { StatefullSet, Pod, Pvc, Pv } from './BuildingBlocks';
 
+const groupByOptions = ['nothing', 'node', 'namespace'].map((v) => {return {value: v, label: v} } )
+
 class MainScreen extends React.Component {
+
 
     constructor(props) {
         super(props);     
 
         this.state =
         {
-            groupBy: "none",
+            groupBy: groupByOptions[0],
+
+            showNamespacesOptions: [],
+            showNamespaces: [],
+
             data:
             {
                 pods: [],
@@ -24,7 +33,7 @@ class MainScreen extends React.Component {
             }
         }
 
-//        this.calcNewState = this.calcNewState.bind(this);
+        //this.handleGroupByChange = this.handleGroupByChange.bind(this);
     }
 
     componentDidMount() {
@@ -37,7 +46,31 @@ class MainScreen extends React.Component {
         promises.push(k8p.listPersistentVolumeForAllNamespaces().then((data) => { myData.pvs = this.createItems(data) }));
         promises.push(k8p.listStatefulSetForAllNamespaces().then((data) => { myData.statefullsetes = this.createItems(data) }));
 
-        Promise.all(promises).then(() => { this.setState({data: myData}); });
+        Promise.all(promises).then(() => { 
+            this.postProcessData(myData)
+            this.setState({data: myData}); 
+            this.setState({showNamespacesOptions: myData.namespaces.map((v) => {return {value: v, label: v} } )})
+        });
+    }
+
+    postProcessData(data)
+    {
+        data.nodes = this.getUnique(data, "node")
+        data.namespaces = this.getUnique(data, "namespace")
+
+        for(let pvc of data.pvcs) {
+            data.pvs = this.extractPvs(pvc, data.pvs)
+        }
+
+        for(let pod of data.pods) {
+            data.pvcs = this.extractPvcs(pod, data.pvcs)
+        }
+        
+        for(let ss of data.statefullsetes) {
+            const [children, remains] = this.getChildPods(ss.id, data.pods);
+            data.pods = remains
+            ss.pods = children
+        }
     }
 
     createItems(data) {
@@ -141,62 +174,84 @@ class MainScreen extends React.Component {
         return Array.from(vals.values())
     }
    
+    handleGroupByChange = selectedOption => {
+        this.setState({ groupBy: selectedOption });
+    };
+
+    handleShowNamespacesChange = selectedOption => {
+        this.setState({ showNamespaces: selectedOption });
+    };
+
+    // returns an array of functions.
+    // assuing we group by "node". For each node, we get a function that recives an "item" argument and checks if "item.node" equals that node
+    getGroupByFunctions() {
+        if(this.state.groupBy.value === "node")
+            return this.state.data.nodes.map(node => (item => item.node === node ))
+        if(this.state.groupBy.value === "namespace")
+            return this.state.data.namespaces.map(namespace => (item => item.namespace === namespace ))
+        return [(item => true)]
+    }
+
+    namespaceFilter = (item) => {
+        if(this.state.showNamespaces === null || this.state.showNamespaces.length === 0)
+            return true
+        if(this.state.showNamespaces.some(ns => (ns.value === item.namespace)))
+            return true
+        return false
+    }
+
     render() {
 
-        let pvs = this.state.data.pvs;
-        let pvcs = this.state.data.pvcs;
-        let pods = this.state.data.pods;
-        let statefullsetes = this.state.data.statefullsetes;
+        const pvs = this.state.data.pvs;
+        const pvcs = this.state.data.pvcs;
+        const pods = this.state.data.pods;
+        const statefullsetes = this.state.data.statefullsetes;
 
-        let nodes = this.getUnique(this.state.data, "node")
-        let namespaces = this.getUnique(this.state.data, "namespace")
-
-        
-
-        for(let pvc of pvcs) {
-            pvs = this.extractPvs(pvc, pvs)
-        }
-
-        for(let pod of pods) {
-            pvcs = this.extractPvcs(pod, pvcs)
-        }
-        
-        for(let ss of statefullsetes) {
-            const [children, remains] = this.getChildPods(ss.id, pods);
-            pods = remains
-            ss.pods = children
-        }
-
-// {this.GetGroupByElements().map((elem) =>
 
         return(
             <div>
-
             
+            <div>
+            <div style={{width: "200px", display:"inline-block", padding:"10px"}}>
+                Group by: 
+                <Select value={this.state.groupBy} onChange={this.handleGroupByChange} options={groupByOptions}/>
+            </div>
+            <div style={{width: "300px", display:"inline-block", padding:"10px"}}>
+                Show namespaces: 
+                <Select isMulti value={this.state.showNamespaces} onChange={this.handleShowNamespacesChange} options={this.state.showNamespacesOptions}/>
+            </div>
+            </div>
 
-            Stateful sets:
-            <table><tbody>
-            
-                {statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss}/>)}
+            <div>
+            <h3>Stateful sets:</h3>
+            <table><tbody>            
+            {this.getGroupByFunctions().map((groupBy) => 
+                statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupBy} filter={this.namespaceFilter}/>)
+            )}
             </tbody></table>
+            </div>
            
             {pods.length > 0 &&
             <div>
-            Unattached pods:
-            <table><tbody>{pods.map((pod) => <Pod key={pod.key} pod={pod}/> )}</tbody></table>
+            <h3>Unattached pods:</h3>
+            <table><tbody>
+            {this.getGroupByFunctions().map((groupBy) => 
+                pods.map((pod) => <Pod key={pod.key} pod={pod} groupBy={groupBy} filter={this.namespaceFilter}/>)
+            )}
+            </tbody></table>
             </div>
             }
 
             {pvcs.length > 0 &&
             <div>
-            Unattached PVCs:
+            <h3>Unattached PVCs:</h3>
             <table><tbody>{pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc}/>)}</tbody></table>
             </div>
             }
 
             {pvs.length > 0 &&
             <div>
-            Unattached persistant volumes:
+            <h3>Unattached persistant volumes:</h3>
             <table><tbody>{pvs.map((pv) => <Pv key={pv.key} pv={pv}/>)}</tbody></table>
             </div>
             }
