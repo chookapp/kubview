@@ -6,7 +6,7 @@ import Select from 'react-select';
 import "./style.css"
 import { StatefullSet, Pod, Pvc, Pv } from './BuildingBlocks';
 
-const groupByOptions = ['nothing', 'node', 'namespace'].map((v) => {return {value: v, label: v} } )
+const groupByOptions = ['node', 'namespace'].map((v) => {return {value: v, label: v} } )
 
 class MainScreen extends React.Component {
 
@@ -16,7 +16,7 @@ class MainScreen extends React.Component {
 
         this.state =
         {
-            groupBy: groupByOptions[0],
+            groupBy: null,
 
             showNamespacesOptions: [],
             showNamespaces: [],
@@ -185,10 +185,12 @@ class MainScreen extends React.Component {
     // returns an array of functions.
     // assuing we group by "node". For each node, we get a function that recives an "item" argument and checks if "item.node" equals that node
     getGroupByFunctions() {
-        if(this.state.groupBy.value === "node")
-            return this.state.data.nodes.map(node => (item => item.node === node ))
-        if(this.state.groupBy.value === "namespace")
-            return this.state.data.namespaces.map(namespace => (item => item.namespace === namespace ))
+        if (this.state.groupBy !== null) {
+            if (this.state.groupBy.value === "node")
+                return this.state.data.nodes.map(node => (item => item.node === node))
+            if (this.state.groupBy.value === "namespace")
+                return this.state.data.namespaces.map(namespace => (item => item.namespace === namespace))
+        }
         return [(item => true)]
     }
 
@@ -214,7 +216,7 @@ class MainScreen extends React.Component {
             <div>
             <div style={{width: "200px", display:"inline-block", padding:"10px"}}>
                 Group by: 
-                <Select value={this.state.groupBy} onChange={this.handleGroupByChange} options={groupByOptions}/>
+                <Select value={this.state.groupBy} isClearable onChange={this.handleGroupByChange} options={groupByOptions}/>
             </div>
             <div style={{width: "300px", display:"inline-block", padding:"10px"}}>
                 Show namespaces: 
