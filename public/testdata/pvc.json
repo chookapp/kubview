@@ -109,7 +109,7 @@
                     "storage": "persistent"
                 },
                 "name": "data-pzoo-0",
-                "namespace": "kafka",
+                "namespace": "kafka-2",
                 "resourceVersion": "13971",
                 "selfLink": "/api/v1/namespaces/kafka/persistentvolumeclaims/data-pzoo-0",
                 "uid": "78e30c76-24c1-11ea-8dc9-02cea54b2b40"
@@ -155,7 +155,7 @@
                     "storage": "persistent"
                 },
                 "name": "data-pzoo-1",
-                "namespace": "kafka",
+                "namespace": "kafka-2",
                 "resourceVersion": "13975",
                 "selfLink": "/api/v1/namespaces/kafka/persistentvolumeclaims/data-pzoo-1",
                 "uid": "78e501cf-24c1-11ea-8dc9-02cea54b2b40"

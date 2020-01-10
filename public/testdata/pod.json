@@ -27,7 +27,7 @@
                         "blockOwnerDeletion": true,
                         "controller": true,
                         "kind": "StatefulSet",
-                        "name": "kafka",
+                        "name": "kafka - not found",
                         "uid": "b7065390-24c4-11ea-8dc9-02cea54b2b40"
                     }
                 ],
@@ -220,7 +220,7 @@
                     {
                         "name": "data",
                         "persistentVolumeClaim": {
-                            "claimName": "data-kafka-0"
+                            "claimName": "data-kafka-0 - not found"
                         }
                     },
                     {
@@ -657,7 +657,7 @@
                     "storage": "persistent"
                 },
                 "name": "pzoo-0",
-                "namespace": "kafka",
+                "namespace": "kafka-2",
                 "ownerReferences": [
                     {
                         "apiVersion": "apps/v1",
@@ -929,7 +929,7 @@
                     "storage": "persistent"
                 },
                 "name": "pzoo-1",
-                "namespace": "kafka",
+                "namespace": "kafka-2",
                 "ownerReferences": [
                     {
                         "apiVersion": "apps/v1",

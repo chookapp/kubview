@@ -250,7 +250,7 @@
                 "creationTimestamp": "2019-12-22T13:46:36Z",
                 "generation": 1,
                 "name": "pzoo",
-                "namespace": "kafka",
+                "namespace": "kafka-2",
                 "resourceVersion": "14052",
                 "selfLink": "/apis/apps/v1/namespaces/kafka/statefulsets/pzoo",
                 "uid": "78e0e4dc-24c1-11ea-ac88-0ad449621476"
