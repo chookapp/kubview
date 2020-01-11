@@ -44,15 +44,27 @@ export function Pv(props) {
 export function Pvc(props) {
     const pvc = props.pvc;
     const indent = props.indent === undefined ? 0 : props.indent;
+
+    if(props.filter && !props.filter(pvc))
+        return null;
+
     return (<React.Fragment>
         <ItemRow item={pvc} indent={indent} />
         <Pv pv={pvc.pv} indent={indent} />
     </React.Fragment>);
 }
+
+function isPodPartOfGroup(pod, groupBy) {
+    return groupBy(pod)
+}
+
 export function Pod(props) {
     const pod = props.pod;
     const indent = props.indent === undefined ? 0 : props.indent;
-    if(!props.groupBy(pod))
+    if(!isPodPartOfGroup(pod, props.groupBy))
+        return null;
+
+    if(props.filter && !props.filter(pod))
         return null;
 
     return (<React.Fragment>
@@ -61,18 +73,20 @@ export function Pod(props) {
         {pod.pvcNames.map((pvc) => <CustomRow key={pvc} kind="PV claim" name={pvc} indent={indent + 1} />)}
     </React.Fragment>);
 }
+
 export function StatefullSet(props) {
     const ss = props.ss;
     const indent = props.indent === undefined ? 0 : props.indent;
-    const pods = ss.pods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} groupBy={props.groupBy}/>)
-    if(pods.length === 0 && !props.groupBy(ss))
+
+    if(!ss.pods.some(pod => (isPodPartOfGroup(pod, props.groupBy))) && !props.groupBy(ss))
         return null;
 
-    if(!props.filter(ss))
+    // not filtering by my sons... the assumption is (for all objects) that the cons are of the same namespace as I am
+    if(props.filter && !props.filter(ss))
         return null;
 
     return (<React.Fragment>
         <ItemRow item={ss} indent={indent} />
-        {pods}
+        {ss.pods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} groupBy={props.groupBy}/>)}
     </React.Fragment>);
 }

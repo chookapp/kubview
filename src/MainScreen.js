@@ -218,7 +218,7 @@ class MainScreen extends React.Component {
                 Group by: 
                 <Select value={this.state.groupBy} isClearable onChange={this.handleGroupByChange} options={groupByOptions}/>
             </div>
-            <div style={{width: "300px", display:"inline-block", padding:"10px"}}>
+            <div style={{width: "400px", display:"inline-block", padding:"10px"}}>
                 Show namespaces: 
                 <Select isMulti value={this.state.showNamespaces} onChange={this.handleShowNamespacesChange} options={this.state.showNamespacesOptions}/>
             </div>
@@ -247,7 +247,7 @@ class MainScreen extends React.Component {
             {pvcs.length > 0 &&
             <div>
             <h3>Unattached PVCs:</h3>
-            <table><tbody>{pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc}/>)}</tbody></table>
+            <table><tbody>{pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc} filter={this.namespaceFilter}/>)}</tbody></table>
             </div>
             }
 
