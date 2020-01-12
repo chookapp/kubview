@@ -4,3 +4,13 @@ ul {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+.mainTable td {
+    padding: 3px 6px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.mainTable {    
+    border-collapse: collapse;
+}

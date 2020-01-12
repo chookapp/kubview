@@ -209,9 +209,10 @@ class MainScreen extends React.Component {
         const pods = this.state.data.pods;
         const statefullsetes = this.state.data.statefullsetes;
 
-
+        const tableHead = <thead><tr><th>Namespace</th><th>Name</th><th>Kind</th><th></th><th>Status</th></tr></thead>
+    
         return(
-            <div>
+            <div style={{paddingLeft:"10px"}}>
             
             <div>
             <div style={{width: "200px", display:"inline-block", padding:"10px"}}>
@@ -226,7 +227,7 @@ class MainScreen extends React.Component {
 
             <div>
             <h3>Stateful sets:</h3>
-            <table><tbody>            
+            <table className="mainTable">{tableHead}<tbody className="mainTable">
             {this.getGroupByFunctions().map((groupBy) => 
                 statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupBy} filter={this.namespaceFilter}/>)
             )}
@@ -236,7 +237,7 @@ class MainScreen extends React.Component {
             {pods.length > 0 &&
             <div>
             <h3>Unattached pods:</h3>
-            <table><tbody>
+            <table className="mainTable">{tableHead}<tbody className="mainTable">
             {this.getGroupByFunctions().map((groupBy) => 
                 pods.map((pod) => <Pod key={pod.key} pod={pod} groupBy={groupBy} filter={this.namespaceFilter}/>)
             )}
@@ -247,14 +248,18 @@ class MainScreen extends React.Component {
             {pvcs.length > 0 &&
             <div>
             <h3>Unattached PVCs:</h3>
-            <table><tbody>{pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc} filter={this.namespaceFilter}/>)}</tbody></table>
+            <table className="mainTable">{tableHead}<tbody className="mainTable">
+                {pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc} filter={this.namespaceFilter}/>)}
+            </tbody></table>
             </div>
             }
 
             {pvs.length > 0 &&
             <div>
             <h3>Unattached persistant volumes:</h3>
-            <table><tbody>{pvs.map((pv) => <Pv key={pv.key} pv={pv}/>)}</tbody></table>
+            <table className="mainTable">{tableHead}<tbody className="mainTable">
+                {pvs.map((pv) => <Pv key={pv.key} pv={pv}/>)}
+            </tbody></table>
             </div>
             }
 
