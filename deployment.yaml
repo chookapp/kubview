@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubview-dep
+  labels:
+    app: kubview
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubview
+  template:
+    metadata:
+      labels:
+        app: kubview
+    spec:
+      containers:
+        - name: kubview
+          image: 031444075986.dkr.ecr.eu-west-1.amazonaws.com/gil_ecr
+          ports:
+          - containerPort: 3000
+         
+
+
