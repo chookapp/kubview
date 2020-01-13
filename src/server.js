@@ -72,4 +72,9 @@ app.get('/k8s/pvc.json', async (req, res) => await funcs.pvcFunction(res))
 app.get('/k8s/pv.json', async (req, res) => await funcs.pvFunction(res))
 app.get('/k8s/statefulset.json', async (req, res) => await funcs.statefulsetFunction(res))
 
+app.use(express.static(path.join(__dirname, '../build')))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'))
+  })
+
 app.listen(4000)
