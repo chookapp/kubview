@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kubview
-          image: 031444075986.dkr.ecr.eu-west-1.amazonaws.com/gil_ecr
+          image: 009375261418.dkr.ecr.eu-central-1.amazonaws.com/gil_kubview
           ports:
           - containerPort: 3000
          
