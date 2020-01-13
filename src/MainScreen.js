@@ -41,10 +41,10 @@ class MainScreen extends React.Component {
         let promises = [];
         let myData = {};
 
-        promises.push(k8p.listPodForAllNamespaces().then((data) => { myData.pods = this.createItems(data) }));
-        promises.push(k8p.listPersistentVolumeClaimForAllNamespaces().then((data) => { myData.pvcs = this.createItems(data) }));
-        promises.push(k8p.listPersistentVolumeForAllNamespaces().then((data) => { myData.pvs = this.createItems(data) }));
-        promises.push(k8p.listStatefulSetForAllNamespaces().then((data) => { myData.statefullsetes = this.createItems(data) }));
+        promises.push(k8p.listPodForAllNamespaces().then((data) => { myData.pods = this.createItems("Pod", data) }));
+        promises.push(k8p.listPersistentVolumeClaimForAllNamespaces().then((data) => { myData.pvcs = this.createItems("PersistentVolumeClaim", data) }));
+        promises.push(k8p.listPersistentVolumeForAllNamespaces().then((data) => { myData.pvs = this.createItems("PersistentVolume", data) }));
+        promises.push(k8p.listStatefulSetForAllNamespaces().then((data) => { myData.statefullsetes = this.createItems("StatefulSet", data) }));
 
         Promise.all(promises).then(() => { 
             this.postProcessData(myData)
@@ -73,11 +73,11 @@ class MainScreen extends React.Component {
         }
     }
 
-    createItems(data) {
+    createItems(kind, data) {
         let ret = []
         for (let item of data.items) {
             let newItem = {}
-            newItem.kind = item.kind
+            newItem.kind = kind
             newItem.name = item.metadata.name
             newItem.namespace = item.metadata.namespace
             newItem.id = item.metadata.uid
