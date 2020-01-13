@@ -3,7 +3,7 @@ const axios = require('axios');
 class k8sproxy {
 
     listPodForAllNamespaces() {
-        return axios.get('../testdata/pod.json').then((response) => {
+        return axios.get('/k8s/pod.json').then((response) => {
             return(response.data);
         }).catch(function (error) {
             console.log(error);
@@ -11,7 +11,7 @@ class k8sproxy {
     }
 
     listPersistentVolumeClaimForAllNamespaces() {
-        return axios.get('../testdata/pvc.json').then((response) => {
+        return axios.get('/k8s/pvc.json').then((response) => {
             return(response.data);
         }).catch(function (error) {
             console.log(error);
@@ -19,7 +19,7 @@ class k8sproxy {
     }
 
     listPersistentVolumeForAllNamespaces() {
-        return axios.get('../testdata/pv.json').then((response) => {
+        return axios.get('/k8s/pv.json').then((response) => {
             return(response.data);
         }).catch(function (error) {
             console.log(error);
@@ -27,7 +27,7 @@ class k8sproxy {
     }
 
     listStatefulSetForAllNamespaces() {
-        return axios.get('../testdata/statefulset.json').then((response) => {
+        return axios.get('/k8s/statefulset.json').then((response) => {
             return(response.data);
         }).catch(function (error) {
             console.log(error);
