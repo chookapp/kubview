@@ -1,4 +1,13 @@
+# (explaining the commented out code below)
+# At first, I thought to run in development mode. 
+# So I run both the "server" (which provides the data, but not the web page itself) and the "npm start" (which is the web server)
+# But it turned out not to work...
+# so now, I build it in production and the server serves both the web page itself (html, js) and the data (json)
+
+
 node server.js
+
+
 
 # echo "$(date +%T)|started processes"
 

@@ -1,1 +1,788 @@
-{"apiVersion":"v1","items":[{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:55:43.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"kafka"},"name":"data-kafka-0","namespace":"default","resourceVersion":"19008368","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/data-kafka-0","uid":"17a92276-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-17a92276-2bbc-11ea-8cb1-022d78cb5300"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:55:43.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"kafka"},"name":"data-kafka-1","namespace":"default","resourceVersion":"19008374","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/data-kafka-1","uid":"17abc9f6-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-17abc9f6-2bbc-11ea-8cb1-022d78cb5300"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:55:43.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"zookeeper","storage":"persistent"},"name":"data-pzoo-0","namespace":"default","resourceVersion":"19008348","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/data-pzoo-0","uid":"17871732-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-17871732-2bbc-11ea-8cb1-022d78cb5300"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:55:43.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"zookeeper","storage":"persistent"},"name":"data-pzoo-1","namespace":"default","resourceVersion":"19008352","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/data-pzoo-1","uid":"178938c9-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-178938c9-2bbc-11ea-8cb1-022d78cb5300"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-08-04T12:26:43.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"gitserver"},"name":"gitpvc","namespace":"default","resourceVersion":"16195","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/gitpvc","uid":"1e2e3585-b6b3-11e9-b873-069172470ad0"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"generic","volumeMode":"Filesystem","volumeName":"pvc-1e2e3585-b6b3-11e9-b873-069172470ad0"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-class":"research-lab-sc","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-26T12:54:07.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"mongo","environment":"somenamespace"},"name":"mongo-persistent-storage-mongo-db-0","namespace":"default","resourceVersion":"18302000","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/mongo-persistent-storage-mongo-db-0","uid":"cdda87ba-27de-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-cdda87ba-27de-11ea-8cb1-022d78cb5300"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-class":"research-lab-sc","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-26T12:54:28.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"mongo","environment":"somenamespace"},"name":"mongo-persistent-storage-mongo-db-1","namespace":"default","resourceVersion":"18302091","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/mongo-persistent-storage-mongo-db-1","uid":"da4dbc9f-27de-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-da4dbc9f-27de-11ea-8cb1-022d78cb5300"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-30T10:46:37.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"wordpress"},"name":"mysql-pv-claim","namespace":"default","resourceVersion":"18854506","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/mysql-pv-claim","uid":"a7accf3b-2af1-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-a7accf3b-2af1-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-30T10:46:37.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"app":"wordpress-website"},"name":"wp-pv-claim","namespace":"default","resourceVersion":"18854512","selfLink":"/api/v1/namespaces/default/persistentvolumeclaims/wp-pv-claim","uid":"a7d010c1-2af1-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Filesystem","volumeName":"pvc-a7d010c1-2af1-11ea-8cb1-022d78cb5300"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:19.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-kafka-0-journal","zvr":"zertointernal"},"name":"zerto-data-kafka-0-journal","namespace":"zerto","resourceVersion":"19008877","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-0-journal","uid":"74a7e595-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"2Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-74a7e595-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"2Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:19.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-kafka-0-mirror","zvr":"zertointernal"},"name":"zerto-data-kafka-0-mirror","namespace":"zerto","resourceVersion":"19008852","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-0-mirror","uid":"7499bf08-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-7499bf08-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:20.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-kafka-1-journal","zvr":"zertointernal"},"name":"zerto-data-kafka-1-journal","namespace":"zerto","resourceVersion":"19008932","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-1-journal","uid":"7507ce23-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"2Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-7507ce23-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"2Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:20.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-kafka-1-mirror","zvr":"zertointernal"},"name":"zerto-data-kafka-1-mirror","namespace":"zerto","resourceVersion":"19008900","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-1-mirror","uid":"75049cef-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-75049cef-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:21.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-pzoo-0-journal","zvr":"zertointernal"},"name":"zerto-data-pzoo-0-journal","namespace":"zerto","resourceVersion":"19008991","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-0-journal","uid":"757454ca-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"2Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-757454ca-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"2Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-14-212.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:21.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-pzoo-0-mirror","zvr":"zertointernal"},"name":"zerto-data-pzoo-0-mirror","namespace":"zerto","resourceVersion":"19008963","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-0-mirror","uid":"757057ea-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-757057ea-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:21.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-pzoo-1-journal","zvr":"zertointernal"},"name":"zerto-data-pzoo-1-journal","namespace":"zerto","resourceVersion":"19009046","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-1-journal","uid":"75dc0495-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"2Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-75dc0495-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"2Gi"},"phase":"Bound"}},{"metadata":{"annotations":{"pv.kubernetes.io/bind-completed":"yes","pv.kubernetes.io/bound-by-controller":"yes","volume.beta.kubernetes.io/storage-provisioner":"kubernetes.io/aws-ebs","volume.kubernetes.io/selected-node":"ip-192-168-88-132.eu-central-1.compute.internal"},"creationTimestamp":"2019-12-31T10:58:21.000Z","finalizers":["kubernetes.io/pvc-protection"],"labels":{"zertoid":"zerto-data-pzoo-1-mirror","zvr":"zertointernal"},"name":"zerto-data-pzoo-1-mirror","namespace":"zerto","resourceVersion":"19009019","selfLink":"/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-1-mirror","uid":"75d84972-2bbc-11ea-bb24-0adbc81ca488"},"spec":{"accessModes":["ReadWriteOnce"],"dataSource":null,"resources":{"requests":{"storage":"1Gi"}},"storageClassName":"research-lab-sc","volumeMode":"Block","volumeName":"pvc-75d84972-2bbc-11ea-bb24-0adbc81ca488"},"status":{"accessModes":["ReadWriteOnce"],"capacity":{"storage":"1Gi"},"phase":"Bound"}}],"kind":"PersistentVolumeClaimList","metadata":{"resourceVersion":"20831234","selfLink":"/api/v1/persistentvolumeclaims"}}
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:55:43.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "kafka"
+                },
+                "name": "data-kafka-0",
+                "namespace": "default",
+                "resourceVersion": "19008368",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/data-kafka-0",
+                "uid": "17a92276-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-17a92276-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:55:43.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "kafka"
+                },
+                "name": "data-kafka-1",
+                "namespace": "default",
+                "resourceVersion": "19008374",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/data-kafka-1",
+                "uid": "17abc9f6-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-17abc9f6-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:55:43.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "zookeeper",
+                    "storage": "persistent"
+                },
+                "name": "data-pzoo-0",
+                "namespace": "default",
+                "resourceVersion": "19008348",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/data-pzoo-0",
+                "uid": "17871732-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-17871732-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:55:43.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "zookeeper",
+                    "storage": "persistent"
+                },
+                "name": "data-pzoo-1",
+                "namespace": "default",
+                "resourceVersion": "19008352",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/data-pzoo-1",
+                "uid": "178938c9-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-178938c9-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-08-04T12:26:43.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "gitserver"
+                },
+                "name": "gitpvc",
+                "namespace": "default",
+                "resourceVersion": "16195",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/gitpvc",
+                "uid": "1e2e3585-b6b3-11e9-b873-069172470ad0"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "generic",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-1e2e3585-b6b3-11e9-b873-069172470ad0"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-class": "research-lab-sc",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-26T12:54:07.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "mongo",
+                    "environment": "somenamespace"
+                },
+                "name": "mongo-persistent-storage-mongo-db-0",
+                "namespace": "default",
+                "resourceVersion": "18302000",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/mongo-persistent-storage-mongo-db-0",
+                "uid": "cdda87ba-27de-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-cdda87ba-27de-11ea-8cb1-022d78cb5300"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-class": "research-lab-sc",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-26T12:54:28.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "mongo",
+                    "environment": "somenamespace"
+                },
+                "name": "mongo-persistent-storage-mongo-db-1",
+                "namespace": "default",
+                "resourceVersion": "18302091",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/mongo-persistent-storage-mongo-db-1",
+                "uid": "da4dbc9f-27de-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-da4dbc9f-27de-11ea-8cb1-022d78cb5300"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-30T10:46:37.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "wordpress"
+                },
+                "name": "mysql-pv-claim",
+                "namespace": "default",
+                "resourceVersion": "18854506",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/mysql-pv-claim",
+                "uid": "a7accf3b-2af1-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-a7accf3b-2af1-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-30T10:46:37.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app": "wordpress-website"
+                },
+                "name": "wp-pv-claim",
+                "namespace": "default",
+                "resourceVersion": "18854512",
+                "selfLink": "/api/v1/namespaces/default/persistentvolumeclaims/wp-pv-claim",
+                "uid": "a7d010c1-2af1-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-a7d010c1-2af1-11ea-8cb1-022d78cb5300"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:19.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-kafka-0-journal",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-kafka-0-journal",
+                "namespace": "zerto",
+                "resourceVersion": "19008877",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-0-journal",
+                "uid": "74a7e595-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-74a7e595-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:19.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-kafka-0-mirror",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-kafka-0-mirror",
+                "namespace": "zerto",
+                "resourceVersion": "19008852",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-0-mirror",
+                "uid": "7499bf08-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-7499bf08-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:20.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-kafka-1-journal",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-kafka-1-journal",
+                "namespace": "zerto",
+                "resourceVersion": "19008932",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-1-journal",
+                "uid": "7507ce23-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-7507ce23-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:20.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-kafka-1-mirror",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-kafka-1-mirror",
+                "namespace": "zerto",
+                "resourceVersion": "19008900",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-kafka-1-mirror",
+                "uid": "75049cef-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-75049cef-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:21.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-pzoo-0-journal",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-pzoo-0-journal",
+                "namespace": "zerto",
+                "resourceVersion": "19008991",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-0-journal",
+                "uid": "757454ca-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-757454ca-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-14-212.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:21.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-pzoo-0-mirror",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-pzoo-0-mirror",
+                "namespace": "zerto",
+                "resourceVersion": "19008963",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-0-mirror",
+                "uid": "757057ea-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-757057ea-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:21.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-pzoo-1-journal",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-pzoo-1-journal",
+                "namespace": "zerto",
+                "resourceVersion": "19009046",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-1-journal",
+                "uid": "75dc0495-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-75dc0495-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "kubernetes.io/aws-ebs",
+                    "volume.kubernetes.io/selected-node": "ip-192-168-88-132.eu-central-1.compute.internal"
+                },
+                "creationTimestamp": "2019-12-31T10:58:21.000Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "zertoid": "zerto-data-pzoo-1-mirror",
+                    "zvr": "zertointernal"
+                },
+                "name": "zerto-data-pzoo-1-mirror",
+                "namespace": "zerto",
+                "resourceVersion": "19009019",
+                "selfLink": "/api/v1/namespaces/zerto/persistentvolumeclaims/zerto-data-pzoo-1-mirror",
+                "uid": "75d84972-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "dataSource": null,
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block",
+                "volumeName": "pvc-75d84972-2bbc-11ea-bb24-0adbc81ca488"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "PersistentVolumeClaimList",
+    "metadata": {
+        "resourceVersion": "20831234",
+        "selfLink": "/api/v1/persistentvolumeclaims"
+    }
+}
