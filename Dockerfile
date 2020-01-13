@@ -7,7 +7,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 3000
+RUN npm run build
+
 EXPOSE 4000
 
 CMD [ "bash", "run.sh" ]
