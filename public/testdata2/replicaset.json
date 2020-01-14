@@ -1,0 +1,268 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "extensions/v1beta1",
+            "kind": "ReplicaSet",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/desired-replicas": "1",
+                    "deployment.kubernetes.io/max-replicas": "2",
+                    "deployment.kubernetes.io/revision": "1"
+                },
+                "creationTimestamp": "2019-10-02T11:17:58Z",
+                "generation": 1,
+                "labels": {
+                    "app": "git-server",
+                    "pod-template-hash": "86bc44c985"
+                },
+                "name": "git-server-86bc44c985",
+                "namespace": "default",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Deployment",
+                        "name": "git-server",
+                        "uid": "49fe1f5d-e506-11e9-8506-028ca656ea08"
+                    }
+                ],
+                "resourceVersion": "18137352",
+                "selfLink": "/apis/extensions/v1beta1/namespaces/default/replicasets/git-server-86bc44c985",
+                "uid": "4a00803d-e506-11e9-bc82-0a03e5ef057e"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "matchLabels": {
+                        "app": "git-server",
+                        "pod-template-hash": "86bc44c985"
+                    }
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "git-server",
+                            "pod-template-hash": "86bc44c985"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "command": [
+                                    "/usr/sbin/sshd",
+                                    "-D"
+                                ],
+                                "image": "009375261418.dkr.ecr.eu-central-1.amazonaws.com/projectz:git_server",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "gitserver",
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/repo",
+                                        "name": "external"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "external",
+                                "persistentVolumeClaim": {
+                                    "claimName": "gitpvc"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "fullyLabeledReplicas": 1,
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1
+            }
+        },
+        {
+            "apiVersion": "extensions/v1beta1",
+            "kind": "ReplicaSet",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/desired-replicas": "1",
+                    "deployment.kubernetes.io/max-replicas": "2",
+                    "deployment.kubernetes.io/revision": "1"
+                },
+                "creationTimestamp": "2020-01-13T15:19:12Z",
+                "generation": 1,
+                "labels": {
+                    "app": "kubview",
+                    "pod-template-hash": "69df9dc94"
+                },
+                "name": "kubview-dep-69df9dc94",
+                "namespace": "default",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Deployment",
+                        "name": "kubview-dep",
+                        "uid": "0dd22c30-3618-11ea-8cb1-022d78cb5300"
+                    }
+                ],
+                "resourceVersion": "20831222",
+                "selfLink": "/apis/extensions/v1beta1/namespaces/default/replicasets/kubview-dep-69df9dc94",
+                "uid": "0dd473a9-3618-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "matchLabels": {
+                        "app": "kubview",
+                        "pod-template-hash": "69df9dc94"
+                    }
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "kubview",
+                            "pod-template-hash": "69df9dc94"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "KUBERNETES",
+                                        "value": "1"
+                                    }
+                                ],
+                                "image": "009375261418.dkr.ecr.eu-central-1.amazonaws.com/gil_kubview",
+                                "imagePullPolicy": "Always",
+                                "name": "kubview",
+                                "ports": [
+                                    {
+                                        "containerPort": 3000,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "serviceAccount": "kubview-account",
+                        "serviceAccountName": "kubview-account",
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "fullyLabeledReplicas": 1,
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1
+            }
+        },
+        {
+            "apiVersion": "extensions/v1beta1",
+            "kind": "ReplicaSet",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/desired-replicas": "1",
+                    "deployment.kubernetes.io/max-replicas": "2",
+                    "deployment.kubernetes.io/revision": "1"
+                },
+                "creationTimestamp": "2019-12-26T12:54:07Z",
+                "generation": 1,
+                "labels": {
+                    "app": "mongodb-client-app",
+                    "pod-template-hash": "7d49bb4ff9"
+                },
+                "name": "mongodb-client-app-7d49bb4ff9",
+                "namespace": "default",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Deployment",
+                        "name": "mongodb-client-app",
+                        "uid": "cdf5b5ac-27de-11ea-8cb1-022d78cb5300"
+                    }
+                ],
+                "resourceVersion": "18302035",
+                "selfLink": "/apis/extensions/v1beta1/namespaces/default/replicasets/mongodb-client-app-7d49bb4ff9",
+                "uid": "cdf77b04-27de-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "matchLabels": {
+                        "app": "mongodb-client-app",
+                        "pod-template-hash": "7d49bb4ff9"
+                    }
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "mongodb-client-app",
+                            "pod-template-hash": "7d49bb4ff9"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "command": [
+                                    "sleep",
+                                    "infinity"
+                                ],
+                                "image": "mongo",
+                                "imagePullPolicy": "Always",
+                                "name": "testsvr",
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 0
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "fullyLabeledReplicas": 1,
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": "",
+        "selfLink": ""
+    }
+}
