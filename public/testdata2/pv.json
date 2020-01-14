@@ -1,1 +1,1209 @@
-{"apiVersion":"v1","items":[{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:55:44.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-17871732-2bbc-11ea-8cb1-022d78cb5300","resourceVersion":"19008345","selfLink":"/api/v1/persistentvolumes/pvc-17871732-2bbc-11ea-8cb1-022d78cb5300","uid":"17c5c342-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1b/vol-07ae4a2bb722e1541"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"data-pzoo-0","namespace":"default","resourceVersion":"19008287","uid":"17871732-2bbc-11ea-8cb1-022d78cb5300"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:55:44.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-178938c9-2bbc-11ea-8cb1-022d78cb5300","resourceVersion":"19008349","selfLink":"/api/v1/persistentvolumes/pvc-178938c9-2bbc-11ea-8cb1-022d78cb5300","uid":"17c5c36c-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1c/vol-0f107594b5eaa5e07"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"data-pzoo-1","namespace":"default","resourceVersion":"19008297","uid":"178938c9-2bbc-11ea-8cb1-022d78cb5300"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:55:44.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-17a92276-2bbc-11ea-8cb1-022d78cb5300","resourceVersion":"19008366","selfLink":"/api/v1/persistentvolumes/pvc-17a92276-2bbc-11ea-8cb1-022d78cb5300","uid":"17e1d401-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1b/vol-0c3f17058eb491a87"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"data-kafka-0","namespace":"default","resourceVersion":"19008330","uid":"17a92276-2bbc-11ea-8cb1-022d78cb5300"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:55:44.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-17abc9f6-2bbc-11ea-8cb1-022d78cb5300","resourceVersion":"19008372","selfLink":"/api/v1/persistentvolumes/pvc-17abc9f6-2bbc-11ea-8cb1-022d78cb5300","uid":"17e5dd47-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1c/vol-0281de8c3560f09dd"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"data-kafka-1","namespace":"default","resourceVersion":"19008333","uid":"17abc9f6-2bbc-11ea-8cb1-022d78cb5300"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-08-04T12:26:43.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-1e2e3585-b6b3-11e9-b873-069172470ad0","resourceVersion":"16194","selfLink":"/api/v1/persistentvolumes/pvc-1e2e3585-b6b3-11e9-b873-069172470ad0","uid":"1e68014e-b6b3-11e9-b873-069172470ad0"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1c/vol-03af2ad78f57766dc"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"gitpvc","namespace":"default","resourceVersion":"16178","uid":"1e2e3585-b6b3-11e9-b873-069172470ad0"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"generic","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:20.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-7499bf08-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19008853","selfLink":"/api/v1/persistentvolumes/pvc-7499bf08-2bbc-11ea-bb24-0adbc81ca488","uid":"74d97d21-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1c/vol-0c3a1af9f7ab18f4d"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-kafka-0-mirror","namespace":"zerto","resourceVersion":"19008840","uid":"7499bf08-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]},{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:20.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-74a7e595-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19008876","selfLink":"/api/v1/persistentvolumes/pvc-74a7e595-2bbc-11ea-bb24-0adbc81ca488","uid":"74fbc41a-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1c/vol-00ce30944270de2c1"},"capacity":{"storage":"2Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-kafka-0-journal","namespace":"zerto","resourceVersion":"19008847","uid":"74a7e595-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:20.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-75049cef-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19008899","selfLink":"/api/v1/persistentvolumes/pvc-75049cef-2bbc-11ea-bb24-0adbc81ca488","uid":"753aa1c6-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1b/vol-03c8606961505be6f"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-kafka-1-mirror","namespace":"zerto","resourceVersion":"19008884","uid":"75049cef-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]},{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:21.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-7507ce23-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19008931","selfLink":"/api/v1/persistentvolumes/pvc-7507ce23-2bbc-11ea-bb24-0adbc81ca488","uid":"756781e9-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1b/vol-0172d1aeb1ce33d31"},"capacity":{"storage":"2Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-kafka-1-journal","namespace":"zerto","resourceVersion":"19008891","uid":"7507ce23-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]},{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:21.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-757057ea-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19008961","selfLink":"/api/v1/persistentvolumes/pvc-757057ea-2bbc-11ea-bb24-0adbc81ca488","uid":"75a6c2f9-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1c/vol-0834b368cce63fe86"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-pzoo-0-mirror","namespace":"zerto","resourceVersion":"19008941","uid":"757057ea-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:21.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-757454ca-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19008990","selfLink":"/api/v1/persistentvolumes/pvc-757454ca-2bbc-11ea-bb24-0adbc81ca488","uid":"75d4bbb0-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1c/vol-038ab1707db4d18d3"},"capacity":{"storage":"2Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-pzoo-0-journal","namespace":"zerto","resourceVersion":"19008952","uid":"757454ca-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:22.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-75d84972-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19009015","selfLink":"/api/v1/persistentvolumes/pvc-75d84972-2bbc-11ea-bb24-0adbc81ca488","uid":"760aacb2-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1b/vol-0b91f9136c3acce05"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-pzoo-1-mirror","namespace":"zerto","resourceVersion":"19008999","uid":"75d84972-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-31T10:58:22.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-75dc0495-2bbc-11ea-bb24-0adbc81ca488","resourceVersion":"19009044","selfLink":"/api/v1/persistentvolumes/pvc-75dc0495-2bbc-11ea-bb24-0adbc81ca488","uid":"762b5522-2bbc-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"volumeID":"aws://eu-central-1b/vol-0131a42a2311c8a84"},"capacity":{"storage":"2Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"zerto-data-pzoo-1-journal","namespace":"zerto","resourceVersion":"19009010","uid":"75dc0495-2bbc-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Block"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-30T10:46:38.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-a7accf3b-2af1-11ea-bb24-0adbc81ca488","resourceVersion":"18854505","selfLink":"/api/v1/persistentvolumes/pvc-a7accf3b-2af1-11ea-bb24-0adbc81ca488","uid":"a7ed06c5-2af1-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1b/vol-08c15afb35cfc9d6d"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"mysql-pv-claim","namespace":"default","resourceVersion":"18854478","uid":"a7accf3b-2af1-11ea-bb24-0adbc81ca488"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]},{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-30T10:46:38.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-a7d010c1-2af1-11ea-8cb1-022d78cb5300","resourceVersion":"18854510","selfLink":"/api/v1/persistentvolumes/pvc-a7d010c1-2af1-11ea-8cb1-022d78cb5300","uid":"a807a1e6-2af1-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1c/vol-06a51d8a5913d730d"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"wp-pv-claim","namespace":"default","resourceVersion":"18854498","uid":"a7d010c1-2af1-11ea-8cb1-022d78cb5300"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-26T12:54:08.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1b"},"name":"pvc-cdda87ba-27de-11ea-8cb1-022d78cb5300","resourceVersion":"18301998","selfLink":"/api/v1/persistentvolumes/pvc-cdda87ba-27de-11ea-8cb1-022d78cb5300","uid":"ce216458-27de-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1b/vol-049939a0f0e4b22e6"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"mongo-persistent-storage-mongo-db-0","namespace":"default","resourceVersion":"18301975","uid":"cdda87ba-27de-11ea-8cb1-022d78cb5300"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1b"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}},{"metadata":{"annotations":{"kubernetes.io/createdby":"aws-ebs-dynamic-provisioner","pv.kubernetes.io/bound-by-controller":"yes","pv.kubernetes.io/provisioned-by":"kubernetes.io/aws-ebs"},"creationTimestamp":"2019-12-26T12:54:29.000Z","finalizers":["kubernetes.io/pv-protection"],"labels":{"failure-domain.beta.kubernetes.io/region":"eu-central-1","failure-domain.beta.kubernetes.io/zone":"eu-central-1c"},"name":"pvc-da4dbc9f-27de-11ea-8cb1-022d78cb5300","resourceVersion":"18302090","selfLink":"/api/v1/persistentvolumes/pvc-da4dbc9f-27de-11ea-8cb1-022d78cb5300","uid":"da866399-27de-11ea-8cb1-022d78cb5300"},"spec":{"accessModes":["ReadWriteOnce"],"awsElasticBlockStore":{"fsType":"ext4","volumeID":"aws://eu-central-1c/vol-06a3cb083fb868376"},"capacity":{"storage":"1Gi"},"claimRef":{"apiVersion":"v1","kind":"PersistentVolumeClaim","name":"mongo-persistent-storage-mongo-db-1","namespace":"default","resourceVersion":"18302084","uid":"da4dbc9f-27de-11ea-8cb1-022d78cb5300"},"nodeAffinity":{"required":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"failure-domain.beta.kubernetes.io/zone","operator":"In","values":["eu-central-1c"]},{"key":"failure-domain.beta.kubernetes.io/region","operator":"In","values":["eu-central-1"]}]}]}},"persistentVolumeReclaimPolicy":"Delete","storageClassName":"research-lab-sc","volumeMode":"Filesystem"},"status":{"phase":"Bound"}}],"kind":"PersistentVolumeList","metadata":{"resourceVersion":"20831234","selfLink":"/api/v1/persistentvolumes"}}
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:55:44.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-17871732-2bbc-11ea-8cb1-022d78cb5300",
+                "resourceVersion": "19008345",
+                "selfLink": "/api/v1/persistentvolumes/pvc-17871732-2bbc-11ea-8cb1-022d78cb5300",
+                "uid": "17c5c342-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1b/vol-07ae4a2bb722e1541"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-pzoo-0",
+                    "namespace": "default",
+                    "resourceVersion": "19008287",
+                    "uid": "17871732-2bbc-11ea-8cb1-022d78cb5300"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:55:44.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-178938c9-2bbc-11ea-8cb1-022d78cb5300",
+                "resourceVersion": "19008349",
+                "selfLink": "/api/v1/persistentvolumes/pvc-178938c9-2bbc-11ea-8cb1-022d78cb5300",
+                "uid": "17c5c36c-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1c/vol-0f107594b5eaa5e07"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-pzoo-1",
+                    "namespace": "default",
+                    "resourceVersion": "19008297",
+                    "uid": "178938c9-2bbc-11ea-8cb1-022d78cb5300"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:55:44.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-17a92276-2bbc-11ea-8cb1-022d78cb5300",
+                "resourceVersion": "19008366",
+                "selfLink": "/api/v1/persistentvolumes/pvc-17a92276-2bbc-11ea-8cb1-022d78cb5300",
+                "uid": "17e1d401-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1b/vol-0c3f17058eb491a87"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-kafka-0",
+                    "namespace": "default",
+                    "resourceVersion": "19008330",
+                    "uid": "17a92276-2bbc-11ea-8cb1-022d78cb5300"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:55:44.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-17abc9f6-2bbc-11ea-8cb1-022d78cb5300",
+                "resourceVersion": "19008372",
+                "selfLink": "/api/v1/persistentvolumes/pvc-17abc9f6-2bbc-11ea-8cb1-022d78cb5300",
+                "uid": "17e5dd47-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1c/vol-0281de8c3560f09dd"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "data-kafka-1",
+                    "namespace": "default",
+                    "resourceVersion": "19008333",
+                    "uid": "17abc9f6-2bbc-11ea-8cb1-022d78cb5300"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-08-04T12:26:43.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-1e2e3585-b6b3-11e9-b873-069172470ad0",
+                "resourceVersion": "16194",
+                "selfLink": "/api/v1/persistentvolumes/pvc-1e2e3585-b6b3-11e9-b873-069172470ad0",
+                "uid": "1e68014e-b6b3-11e9-b873-069172470ad0"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1c/vol-03af2ad78f57766dc"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "gitpvc",
+                    "namespace": "default",
+                    "resourceVersion": "16178",
+                    "uid": "1e2e3585-b6b3-11e9-b873-069172470ad0"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "generic",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:20.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-7499bf08-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19008853",
+                "selfLink": "/api/v1/persistentvolumes/pvc-7499bf08-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "74d97d21-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1c/vol-0c3a1af9f7ab18f4d"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-kafka-0-mirror",
+                    "namespace": "zerto",
+                    "resourceVersion": "19008840",
+                    "uid": "7499bf08-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:20.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-74a7e595-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19008876",
+                "selfLink": "/api/v1/persistentvolumes/pvc-74a7e595-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "74fbc41a-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1c/vol-00ce30944270de2c1"
+                },
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-kafka-0-journal",
+                    "namespace": "zerto",
+                    "resourceVersion": "19008847",
+                    "uid": "74a7e595-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:20.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-75049cef-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19008899",
+                "selfLink": "/api/v1/persistentvolumes/pvc-75049cef-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "753aa1c6-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1b/vol-03c8606961505be6f"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-kafka-1-mirror",
+                    "namespace": "zerto",
+                    "resourceVersion": "19008884",
+                    "uid": "75049cef-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:21.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-7507ce23-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19008931",
+                "selfLink": "/api/v1/persistentvolumes/pvc-7507ce23-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "756781e9-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1b/vol-0172d1aeb1ce33d31"
+                },
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-kafka-1-journal",
+                    "namespace": "zerto",
+                    "resourceVersion": "19008891",
+                    "uid": "7507ce23-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:21.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-757057ea-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19008961",
+                "selfLink": "/api/v1/persistentvolumes/pvc-757057ea-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "75a6c2f9-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1c/vol-0834b368cce63fe86"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-pzoo-0-mirror",
+                    "namespace": "zerto",
+                    "resourceVersion": "19008941",
+                    "uid": "757057ea-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:21.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-757454ca-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19008990",
+                "selfLink": "/api/v1/persistentvolumes/pvc-757454ca-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "75d4bbb0-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1c/vol-038ab1707db4d18d3"
+                },
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-pzoo-0-journal",
+                    "namespace": "zerto",
+                    "resourceVersion": "19008952",
+                    "uid": "757454ca-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:22.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-75d84972-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19009015",
+                "selfLink": "/api/v1/persistentvolumes/pvc-75d84972-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "760aacb2-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1b/vol-0b91f9136c3acce05"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-pzoo-1-mirror",
+                    "namespace": "zerto",
+                    "resourceVersion": "19008999",
+                    "uid": "75d84972-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-31T10:58:22.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-75dc0495-2bbc-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "19009044",
+                "selfLink": "/api/v1/persistentvolumes/pvc-75dc0495-2bbc-11ea-bb24-0adbc81ca488",
+                "uid": "762b5522-2bbc-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "volumeID": "aws://eu-central-1b/vol-0131a42a2311c8a84"
+                },
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "zerto-data-pzoo-1-journal",
+                    "namespace": "zerto",
+                    "resourceVersion": "19009010",
+                    "uid": "75dc0495-2bbc-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Block"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-30T10:46:38.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-a7accf3b-2af1-11ea-bb24-0adbc81ca488",
+                "resourceVersion": "18854505",
+                "selfLink": "/api/v1/persistentvolumes/pvc-a7accf3b-2af1-11ea-bb24-0adbc81ca488",
+                "uid": "a7ed06c5-2af1-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1b/vol-08c15afb35cfc9d6d"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "mysql-pv-claim",
+                    "namespace": "default",
+                    "resourceVersion": "18854478",
+                    "uid": "a7accf3b-2af1-11ea-bb24-0adbc81ca488"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-30T10:46:38.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-a7d010c1-2af1-11ea-8cb1-022d78cb5300",
+                "resourceVersion": "18854510",
+                "selfLink": "/api/v1/persistentvolumes/pvc-a7d010c1-2af1-11ea-8cb1-022d78cb5300",
+                "uid": "a807a1e6-2af1-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1c/vol-06a51d8a5913d730d"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "wp-pv-claim",
+                    "namespace": "default",
+                    "resourceVersion": "18854498",
+                    "uid": "a7d010c1-2af1-11ea-8cb1-022d78cb5300"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-26T12:54:08.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1b"
+                },
+                "name": "pvc-cdda87ba-27de-11ea-8cb1-022d78cb5300",
+                "resourceVersion": "18301998",
+                "selfLink": "/api/v1/persistentvolumes/pvc-cdda87ba-27de-11ea-8cb1-022d78cb5300",
+                "uid": "ce216458-27de-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1b/vol-049939a0f0e4b22e6"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "mongo-persistent-storage-mongo-db-0",
+                    "namespace": "default",
+                    "resourceVersion": "18301975",
+                    "uid": "cdda87ba-27de-11ea-8cb1-022d78cb5300"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1b"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        },
+        {
+            "metadata": {
+                "annotations": {
+                    "kubernetes.io/createdby": "aws-ebs-dynamic-provisioner",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "pv.kubernetes.io/provisioned-by": "kubernetes.io/aws-ebs"
+                },
+                "creationTimestamp": "2019-12-26T12:54:29.000Z",
+                "finalizers": [
+                    "kubernetes.io/pv-protection"
+                ],
+                "labels": {
+                    "failure-domain.beta.kubernetes.io/region": "eu-central-1",
+                    "failure-domain.beta.kubernetes.io/zone": "eu-central-1c"
+                },
+                "name": "pvc-da4dbc9f-27de-11ea-8cb1-022d78cb5300",
+                "resourceVersion": "18302090",
+                "selfLink": "/api/v1/persistentvolumes/pvc-da4dbc9f-27de-11ea-8cb1-022d78cb5300",
+                "uid": "da866399-27de-11ea-8cb1-022d78cb5300"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "awsElasticBlockStore": {
+                    "fsType": "ext4",
+                    "volumeID": "aws://eu-central-1c/vol-06a3cb083fb868376"
+                },
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "claimRef": {
+                    "apiVersion": "v1",
+                    "kind": "PersistentVolumeClaim",
+                    "name": "mongo-persistent-storage-mongo-db-1",
+                    "namespace": "default",
+                    "resourceVersion": "18302084",
+                    "uid": "da4dbc9f-27de-11ea-8cb1-022d78cb5300"
+                },
+                "nodeAffinity": {
+                    "required": {
+                        "nodeSelectorTerms": [
+                            {
+                                "matchExpressions": [
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/zone",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1c"
+                                        ]
+                                    },
+                                    {
+                                        "key": "failure-domain.beta.kubernetes.io/region",
+                                        "operator": "In",
+                                        "values": [
+                                            "eu-central-1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "persistentVolumeReclaimPolicy": "Delete",
+                "storageClassName": "research-lab-sc",
+                "volumeMode": "Filesystem"
+            },
+            "status": {
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "PersistentVolumeList",
+    "metadata": {
+        "resourceVersion": "20831234",
+        "selfLink": "/api/v1/persistentvolumes"
+    }
+}
