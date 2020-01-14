@@ -52,16 +52,16 @@ if (("KUBERNETES" in process.env) && (process.env.KUBERNETES === "1")) {
     console.log('KUBERNETES not set!');
 
     funcs.podFunction = async (res) => {
-        res.sendFile(path.join(__dirname, 'public/testdata', 'pod.json'));
+        res.sendFile(path.join(__dirname, 'public/testdata2', 'pod.json'));
     }
     funcs.pvcFunction = async (res) => {
-        res.sendFile(path.join(__dirname, 'public/testdata', 'pvc.json'));
+        res.sendFile(path.join(__dirname, 'public/testdata2', 'pvc.json'));
     }
     funcs.pvFunction = async (res) => {
-        res.sendFile(path.join(__dirname, 'public/testdata', 'pv.json'));
+        res.sendFile(path.join(__dirname, 'public/testdata2', 'pv.json'));
     }
     funcs.statefulsetFunction = async (res) => {
-        res.sendFile(path.join(__dirname, 'public/testdata', 'statefulset.json'));
+        res.sendFile(path.join(__dirname, 'public/testdata2', 'statefulset.json'));
     }
     
 }

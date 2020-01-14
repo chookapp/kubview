@@ -90,7 +90,10 @@ class MainScreen extends React.Component {
 
             if (newItem.kind === "Pod") {
                 newItem.node = item.spec.nodeName
-                newItem.ownerIds = item.metadata.ownerReferences.map((or) => or.uid)
+                newItem.ownerIds = []
+                if(item.metadata.ownerReferences)
+                    newItem.ownerIds = item.metadata.ownerReferences.map((or) => or.uid);
+                    
                 newItem.pvcNames = []
                 newItem.pvcs = []
                 for (let vol of item.spec.volumes) {
