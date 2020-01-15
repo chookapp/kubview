@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Children } from 'react';
 
 function ItemStatus(props) {
     let color = "black";
@@ -8,8 +8,7 @@ function ItemStatus(props) {
     return (<div style={{ color: color }}>{status}</div>);
 }
 function ItemName(props) {
-    const indent = props.indent;
-    return (<div style={{ paddingLeft: 10 + indent * 20, paddingRigth: 10 }}><b>{props.item.name}</b></div>);
+    return (<b>{props.item.name}</b>);
 }
 function ItemNamespace(props) {
     return (<div>{props.item.namespace}</div>);
@@ -17,9 +16,23 @@ function ItemNamespace(props) {
 function ItemKind(props) {
     return (<div><i>{props.item.kind}</i></div>);
 }
+function ItemNameDecoration(props) {
+    const indent = props.indent;
+    const collapseIcon = props.collapseIcon 
+    const padding = indent * (16+3+16)
+    return (
+        <div>            
+            <div style={{ paddingLeft: padding , paddingRigth: 10, display: "inline-block"}}>        
+                <div style={{display: "inline-block", paddingRight: 3}}>{collapseIcon}</div>
+                {props.children}
+            </div>
+        </div>
+    );
+}
+
 function ItemRow(props) {
-    const item = props.item;    
-    return (<tr><td><ItemNamespace item={item} /></td><td><div><ItemName item={item} indent={props.indent}/></div></td><td><ItemKind item={item} /></td><td>{props.extra}</td><td><ItemStatus item={item} /></td></tr>);
+    const item = props.item;       
+    return (<tr><td><ItemNamespace item={item} /></td><td><ItemNameDecoration indent={props.indent} collapseIcon={props.collapseIcon}><ItemName item={item}/></ItemNameDecoration></td><td><ItemKind item={item} /></td><td>{props.extra}</td><td><ItemStatus item={item} /></td></tr>);
 }
 
 function CustomRow(props) {
@@ -59,6 +72,10 @@ function isPodPartOfGroup(pod, groupBy) {
 }
 
 export function Pod(props) {
+    const [collapsed, setCollapsed] = useState(false);
+
+    const collapseChanged = () => setCollapsed(!collapsed)
+
     const pod = props.pod;
     const indent = props.indent === undefined ? 0 : props.indent;
     if(!isPodPartOfGroup(pod, props.groupBy))
@@ -67,26 +84,50 @@ export function Pod(props) {
     if(props.filter && !props.filter(pod))
         return null;
 
-    return (<React.Fragment>
-        <ItemRow item={pod} extra={pod.node} indent={indent} />
+    const hasChildren = pod.pvcs.length > 0 || pod.pvcNames > 0;
+
+    const collapseIcon = hasChildren ? getCollapseIcon(collapsed, collapseChanged) : null;
+
+    const childNodes = <>
         {pod.pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc} indent={indent + 1} />)}
         {pod.pvcNames.map((pvc) => <CustomRow key={pvc} kind="PV claim" name={pvc} indent={indent + 1} />)}
+    </>
+
+    return (<React.Fragment>
+        <ItemRow item={pod} extra={pod.node} indent={indent} collapseIcon={collapseIcon}/>
+        {!collapsed && childNodes}
     </React.Fragment>);
 }
 
+function getCollapseIcon(collapsed, collapseChanged) {
+    const iconSrc = collapsed ? "/plus.png" : "/minus.png"
+    return <img src={iconSrc} alt="+" onClick={collapseChanged}/>;
+}
+
 export function StatefullSet(props) {
+    const [collapsed, setCollapsed] = useState(false);
+
+    const collapseChanged = () => setCollapsed(!collapsed)
+
     const ss = props.ss;
     const indent = props.indent === undefined ? 0 : props.indent;
 
-    if(!ss.pods.some(pod => (isPodPartOfGroup(pod, props.groupBy))) && !props.groupBy(ss))
+    const validPods = ss.pods.filter(pod => (isPodPartOfGroup(pod, props.groupBy)))
+    const hasChildren = validPods.length > 0
+
+    if (!hasChildren && !props.groupBy(ss))
         return null;
 
     // not filtering by my sons... the assumption is (for all objects) that the cons are of the same namespace as I am
-    if(props.filter && !props.filter(ss))
+    if (props.filter && !props.filter(ss))
         return null;
 
+    const collapseIcon = hasChildren ? getCollapseIcon(collapsed, collapseChanged) : null;
+
     return (<React.Fragment>
-        <ItemRow item={ss} indent={indent} />
-        {ss.pods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} groupBy={props.groupBy}/>)}
+        <ItemRow item={ss} indent={indent} collapseIcon={collapseIcon}/>
+        {!collapsed &&
+            validPods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} groupBy={props.groupBy} />)
+        }
     </React.Fragment>);
 }
