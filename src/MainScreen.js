@@ -4,7 +4,7 @@ import k8sproxy from './k8sproxy_mock.js';
 import Select from 'react-select';
 
 import "./style.css"
-import { StatefullSet, Pod, Pvc, Pv } from './BuildingBlocks';
+import { StatefullSet, Pod, Pvc, Pv, Collapsable } from './BuildingBlocks';
 
 const groupByOptions = ['node', 'namespace'].map((v) => {return {value: v, label: v} } )
 
@@ -207,13 +207,20 @@ class MainScreen extends React.Component {
 
     render() {
 
-        const pvs = this.state.data.pvs;
-        const pvcs = this.state.data.pvcs;
-        const pods = this.state.data.pods;
-        const statefullsetes = this.state.data.statefullsetes;
+        // not filtering by my sons... the assumption is (for all objects) that the children are of the same namespace as I am
+
+        const filter = this.namespaceFilter
+
+        const pvs = this.state.data.pvs.filter(obj => filter(obj));
+        const pvcs = this.state.data.pvcs.filter(obj => filter(obj));
+        const pods = this.state.data.pods.filter(obj => filter(obj));
+        const statefullsetes = this.state.data.statefullsetes.filter(obj => filter(obj));
 
         const tableHead = <thead><tr><th>Namespace</th><th>Name</th><th>Kind</th><th></th><th>Status</th></tr></thead>
     
+        
+        
+
         return(
             <div style={{paddingLeft:"10px"}}>
             
@@ -228,21 +235,22 @@ class MainScreen extends React.Component {
             </div>
             </div>
 
-            <div>
-            <h3>Stateful sets:</h3>
+            {statefullsetes.length > 0 &&
+            <Collapsable text="Stateful sets">
             <table className="mainTable">{tableHead}<tbody className="mainTable">
             {this.getGroupByFunctions().map((groupBy) => 
-                statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupBy} filter={this.namespaceFilter}/>)
+                statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupBy}/>)
             )}
             </tbody></table>
-            </div>
+            </Collapsable>
+            }
            
             {pods.length > 0 &&
             <div>
             <h3>Unattached pods:</h3>
             <table className="mainTable">{tableHead}<tbody className="mainTable">
             {this.getGroupByFunctions().map((groupBy) => 
-                pods.map((pod) => <Pod key={pod.key} pod={pod} groupBy={groupBy} filter={this.namespaceFilter}/>)
+                pods.map((pod) => <Pod key={pod.key} pod={pod} groupBy={groupBy}/>)
             )}
             </tbody></table>
             </div>
@@ -252,7 +260,7 @@ class MainScreen extends React.Component {
             <div>
             <h3>Unattached PVCs:</h3>
             <table className="mainTable">{tableHead}<tbody className="mainTable">
-                {pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc} filter={this.namespaceFilter}/>)}
+                {pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc}/>)}
             </tbody></table>
             </div>
             }

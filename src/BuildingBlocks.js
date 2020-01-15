@@ -58,9 +58,6 @@ export function Pvc(props) {
     const pvc = props.pvc;
     const indent = props.indent === undefined ? 0 : props.indent;
 
-    if(props.filter && !props.filter(pvc))
-        return null;
-
     return (<React.Fragment>
         <ItemRow item={pvc} indent={indent} />
         <Pv pv={pvc.pv} indent={indent} />
@@ -79,9 +76,6 @@ export function Pod(props) {
     const pod = props.pod;
     const indent = props.indent === undefined ? 0 : props.indent;
     if(!isPodPartOfGroup(pod, props.groupBy))
-        return null;
-
-    if(props.filter && !props.filter(pod))
         return null;
 
     const hasChildren = pod.pvcs.length > 0 || pod.pvcNames > 0;
@@ -118,10 +112,6 @@ export function StatefullSet(props) {
     if (!hasChildren && !props.groupBy(ss))
         return null;
 
-    // not filtering by my sons... the assumption is (for all objects) that the cons are of the same namespace as I am
-    if (props.filter && !props.filter(ss))
-        return null;
-
     const collapseIcon = hasChildren ? getCollapseIcon(collapsed, collapseChanged) : null;
 
     return (<React.Fragment>
@@ -130,4 +120,21 @@ export function StatefullSet(props) {
             validPods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} groupBy={props.groupBy} />)
         }
     </React.Fragment>);
+}
+
+export function Collapsable(props) {
+    const [collapsed, setCollapsed] = useState(false);
+
+    const collapseChanged = () => setCollapsed(!collapsed)
+
+    const collapseIcon = getCollapseIcon(collapsed, collapseChanged)
+
+    const children = <div style={{paddingLeft: 20}}>{props.children}</div>
+
+    return (<div>
+        <div style={{display: "inline-block", paddingRight: 6}}>{collapseIcon}</div>
+        <div style={{display: "inline-block"}}><h3>{props.text}</h3></div>
+        {!collapsed && children}
+    </div>)
+
 }
