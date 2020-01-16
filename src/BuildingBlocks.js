@@ -131,6 +131,9 @@ export function Collapsable(props) {
 
     const children = <div style={{paddingLeft: 20}}>{props.children}</div>
 
+    if(props.text === null)
+        return props.children
+
     if(Array.isArray(props.children) && props.children.every(c => c === false))
         return <div/>
 

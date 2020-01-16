@@ -329,7 +329,7 @@ class MainScreen extends React.Component {
                                         this.StatefulsetsGroupBy(statefullsetes, groupByFunction))
             })}
 
-            {this.mainContent("ungrouped", groupByFunctions(null), 
+            {this.mainContent(groupByValues.length > 0 ? "ungrouped" : null, groupByFunctions(null), 
                               this.PvsGroupBy(pvs, groupByFunctions(null)), 
                                         this.PvcsGroupBy(pvcs, groupByFunctions(null)),
                                         this.PodsGroupBy(pods, groupByFunctions(null)),
