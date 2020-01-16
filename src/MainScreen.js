@@ -210,7 +210,7 @@ class MainScreen extends React.Component {
         const tableHead = <thead><tr><th>Namespace</th><th>Name</th><th>Kind</th><th></th><th>Status</th></tr></thead>
 
         return (
-            <div>
+            <div key={groupByVal}>
 
             <Collapsable text={groupByVal}>
 
@@ -329,7 +329,7 @@ class MainScreen extends React.Component {
                                         this.StatefulsetsGroupBy(statefullsetes, groupByFunction))
             })}
 
-            {this.mainContent(null, groupByFunctions(null), 
+            {this.mainContent("ungrouped", groupByFunctions(null), 
                               this.PvsGroupBy(pvs, groupByFunctions(null)), 
                                         this.PvcsGroupBy(pvcs, groupByFunctions(null)),
                                         this.PodsGroupBy(pods, groupByFunctions(null)),
