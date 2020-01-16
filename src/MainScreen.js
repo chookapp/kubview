@@ -259,7 +259,11 @@ class MainScreen extends React.Component {
         const validPods = this.PodsGroupBy(statefulset.pods, groupByFunction)
         const hasChildren = validPods.length > 0
 
-        return (hasChildren || groupByFunction(statefulset))
+        // checking myslef only if doesn't have children
+        if(statefulset.pods.length === 0 && groupByFunction(statefulset))
+            return true
+
+        return hasChildren
     }
     StatefulsetsGroupBy(statefulsets, groupByFunction) { 
         return statefulsets.filter(statefulset => this.StatefulsetGroupBy(statefulset, groupByFunction))
