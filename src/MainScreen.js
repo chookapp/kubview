@@ -205,6 +205,66 @@ class MainScreen extends React.Component {
         return false
     }
 
+    mainContent = (groupByVal, groupByFunction, pvs, pvcs, pods, statefullsetes) => {
+
+        const tableHead = <thead><tr><th>Namespace</th><th>Name</th><th>Kind</th><th></th><th>Status</th></tr></thead>
+
+        return (
+            <div>
+
+            <Collapsable text={groupByVal}>
+
+                {statefullsetes.length > 0 &&
+                <Collapsable text="Stateful sets">
+                <table className="mainTable">{tableHead}<tbody className="mainTable">
+                    {statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupByFunction}/>)}
+                </tbody></table>
+                </Collapsable>
+                }
+            
+                {pods.length > 0 &&
+                <Collapsable text="Unattached pods">
+                <table className="mainTable">{tableHead}<tbody className="mainTable">
+                    {pods.map((pod) => <Pod key={pod.key} pod={pod} groupBy={groupByFunction}/>)}
+                </tbody></table>
+                </Collapsable>
+                }
+
+                {pvcs.length > 0 &&
+                <Collapsable text="Unattached PVCs">
+                <table className="mainTable">{tableHead}<tbody className="mainTable">
+                    {pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc}/>)}
+                </tbody></table>
+                </Collapsable>
+                }
+
+                {pvs.length > 0 &&
+                <Collapsable text="Unattached persistant volumes">
+                <table className="mainTable">{tableHead}<tbody className="mainTable">
+                    {pvs.map((pv) => <Pv key={pv.key} pv={pv}/>)}
+                </tbody></table>
+                </Collapsable>
+                }
+
+            </Collapsable>
+        </div>
+        )
+    }
+
+
+    PvsGroupBy(pvs, groupByFunction) { return pvs.filter(pv => groupByFunction(pv)) }
+    PvcsGroupBy(pvcs, groupByFunction) { return pvcs.filter(pvc => groupByFunction(pvc)) }
+    PodsGroupBy(pods, groupByFunction) { return pods.filter(pod => groupByFunction(pod)) }
+    StatefulsetGroupBy(statefulset, groupByFunction) {
+        const validPods = this.PodsGroupBy(statefulset.pods, groupByFunction)
+        const hasChildren = validPods.length > 0
+
+        return (hasChildren || groupByFunction(statefulset))
+    }
+    StatefulsetsGroupBy(statefulsets, groupByFunction) { 
+        return statefulsets.filter(statefulset => this.StatefulsetGroupBy(statefulset, groupByFunction))
+    }
+
     render() {
 
         // not filtering by my sons... the assumption is (for all objects) that the children are of the same namespace as I am
@@ -216,10 +276,29 @@ class MainScreen extends React.Component {
         const pods = this.state.data.pods.filter(obj => filter(obj));
         const statefullsetes = this.state.data.statefullsetes.filter(obj => filter(obj));
 
-        const tableHead = <thead><tr><th>Namespace</th><th>Name</th><th>Kind</th><th></th><th>Status</th></tr></thead>
+        
     
+        let groupByValues = []
+        let groupByFunctions = (v) => (item => true) 
         
-        
+        if (this.state.groupBy !== null) {
+            if (this.state.groupBy.value === "node")
+            {
+                groupByValues = this.state.data.nodes
+                groupByFunctions = (node) => (item => { if(node === null) return !item.node;
+                                                        if(!item.node) return false;
+                                                        return item.node === node;
+                                                    }) 
+            }
+            if (this.state.groupBy.value === "namespace")
+            {
+                groupByValues = this.state.data.namespaces
+                groupByFunctions = (namespace) => (item => { if(namespace === null) return !item.namespace;
+                                                        if(!item.namespace) return false;
+                                                        return item.namespace === namespace;
+                                                    }) 
+            }
+        }
 
         return(
             <div style={{paddingLeft:"10px"}}>
@@ -235,43 +314,22 @@ class MainScreen extends React.Component {
             </div>
             </div>
 
-            {statefullsetes.length > 0 &&
-            <Collapsable text="Stateful sets">
-            <table className="mainTable">{tableHead}<tbody className="mainTable">
-            {this.getGroupByFunctions().map((groupBy) => 
-                statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupBy}/>)
-            )}
-            </tbody></table>
-            </Collapsable>
-            }
-           
-            {pods.length > 0 &&
-            <div>
-            <h3>Unattached pods:</h3>
-            <table className="mainTable">{tableHead}<tbody className="mainTable">
-            {this.getGroupByFunctions().map((groupBy) => 
-                pods.map((pod) => <Pod key={pod.key} pod={pod} groupBy={groupBy}/>)
-            )}
-            </tbody></table>
-            </div>
-            }
+            {
+            groupByValues.map(groupByVal => {
+                const groupByFunction = groupByFunctions(groupByVal);
+                
+                return this.mainContent(groupByVal, groupByFunction,
+                                        this.PvsGroupBy(pvs, groupByFunction), 
+                                        this.PvcsGroupBy(pvcs, groupByFunction),
+                                        this.PodsGroupBy(pods, groupByFunction),
+                                        this.StatefulsetsGroupBy(statefullsetes, groupByFunction))
+            })}
 
-            {pvcs.length > 0 &&
-            <div>
-            <h3>Unattached PVCs:</h3>
-            <table className="mainTable">{tableHead}<tbody className="mainTable">
-                {pvcs.map((pvc) => <Pvc key={pvc.key} pvc={pvc}/>)}
-            </tbody></table>
-            </div>
-            }
-
-            {pvs.length > 0 &&
-            <div>
-            <h3>Unattached persistant volumes:</h3>
-            <table className="mainTable">{tableHead}<tbody className="mainTable">
-                {pvs.map((pv) => <Pv key={pv.key} pv={pv}/>)}
-            </tbody></table>
-            </div>
+            {this.mainContent(null, groupByFunctions(null), 
+                              this.PvsGroupBy(pvs, groupByFunctions(null)), 
+                                        this.PvcsGroupBy(pvcs, groupByFunctions(null)),
+                                        this.PodsGroupBy(pods, groupByFunctions(null)),
+                                        this.StatefulsetsGroupBy(statefullsetes, groupByFunctions(null)))            
             }
 
             </div>

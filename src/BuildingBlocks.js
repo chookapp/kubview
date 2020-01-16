@@ -1,4 +1,4 @@
-import React, { useState, Children } from 'react';
+import React, { useState } from 'react';
 
 function ItemStatus(props) {
     let color = "black";
@@ -130,6 +130,9 @@ export function Collapsable(props) {
     const collapseIcon = getCollapseIcon(collapsed, collapseChanged)
 
     const children = <div style={{paddingLeft: 20}}>{props.children}</div>
+
+    if(props.text === null)
+        return props.children
 
     return (<div>
         <div style={{display: "inline-block", paddingRight: 6}}>{collapseIcon}</div>
