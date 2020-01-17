@@ -38,6 +38,12 @@ class MainScreen extends React.Component {
 
     componentDidMount() {
         const k8p = new k8sproxy();
+        const intervalId = setInterval(this.loadData, 1000, k8p);
+        // store intervalId in the state so it can be accessed later:
+        this.setState({intervalId: intervalId});
+    }
+
+    loadData = (k8p) => {
         let promises = [];
         let myData = {};
 
@@ -53,6 +59,11 @@ class MainScreen extends React.Component {
             this.setState({data: myData}); 
             this.setState({showNamespacesOptions: myData.namespaces.map((v) => {return {value: v, label: v} } )})
         });
+    }
+
+    componentWillUnmount() {
+        // use intervalId from the state to clear the interval
+        clearInterval(this.state.intervalId);
     }
 
     postProcessData(data)

@@ -1,3 +1,8 @@
+- Add daemonset
+- Check if I missed something in the env (zvm-ng is a pod without a deployment?)
+
+
+
 get:
 - node.json
 
