@@ -34,6 +34,22 @@ class k8sproxy {
         })
     }
 
+    listDeploymentForAllNamespaces() {
+        return axios.get('/k8s/deployment.json').then((response) => {
+            return(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        })
+    }
+
+    listReplicaSetForAllNamespaces() {
+        return axios.get('/k8s/replicaset.json').then((response) => {
+            return(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        })
+    }
+
 }
 
 

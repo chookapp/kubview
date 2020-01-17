@@ -45,6 +45,8 @@ class MainScreen extends React.Component {
         promises.push(k8p.listPersistentVolumeClaimForAllNamespaces().then((data) => { myData.pvcs = this.createItems("PersistentVolumeClaim", data) }));
         promises.push(k8p.listPersistentVolumeForAllNamespaces().then((data) => { myData.pvs = this.createItems("PersistentVolume", data) }));
         promises.push(k8p.listStatefulSetForAllNamespaces().then((data) => { myData.statefullsetes = this.createItems("StatefulSet", data) }));
+        promises.push(k8p.listDeploymentForAllNamespaces().then((data) => { myData.deployments = this.createItems("Deployment", data) }));
+        promises.push(k8p.listReplicaSetForAllNamespaces().then((data) => { myData.replicasets = this.createItems("Replicaset", data) }));
 
         Promise.all(promises).then(() => { 
             this.postProcessData(myData)
@@ -66,16 +68,25 @@ class MainScreen extends React.Component {
             data.pvcs = this.extractPvcs(pod, data.pvcs)
         }
         
-        for(let ss of data.statefullsetes) {
-            const [children, remains] = this.getChildPods(ss.id, data.pods);
-            data.pods = remains
-            ss.pods = children
+        let idToContainer = {}
+        for(const ss of data.statefullsetes) idToContainer[ss.id] = ss;
+        for(const d of data.deployments) idToContainer[d.id] = d;
+        for(const r of data.replicasets) {
+            if(r.ownerIds.length === 1) {
+                const o = r.ownerIds[0];
+                if(idToContainer[o])
+                    idToContainer[r.id] = idToContainer[o];
+            } else {
+                console.error(r.name, ' has ', r.ownerIds.length, ' owners')
+            }
         }
+        
+        data.pods = this.assignPods(data.pods, idToContainer)
     }
 
     createItems(kind, data) {
         let ret = []
-        for (let item of data.items) {
+        for (const item of data.items) {
             let newItem = {}
             newItem.kind = kind
             newItem.name = item.metadata.name
@@ -84,8 +95,15 @@ class MainScreen extends React.Component {
             newItem.status = item.status.phase
             newItem.key = newItem.namespace + ":" + newItem.name 
 
-            if (newItem.kind === "StatefulSet") {                                
+            if (["StatefulSet", "Deployment"].includes(newItem.kind) ) {                                
                 newItem.status = item.status.readyReplicas + "/" + item.status.replicas
+                newItem.pods = []
+            }
+
+            if (newItem.kind === "Replicaset") {
+                newItem.ownerIds = []
+                if(item.metadata.ownerReferences)
+                    newItem.ownerIds = item.metadata.ownerReferences.map((or) => or.uid);
             }
 
             if (newItem.kind === "Pod") {
@@ -118,17 +136,20 @@ class MainScreen extends React.Component {
         return ret
     }
 
-    getChildPods(id, pods) {
-        let ret = [];
+    assignPods(pods, idToContainer) {
         let remains = [];
-        for(let pod of pods) {
-            if(pod.ownerIds.indexOf(id) !== -1)
-                ret.push(pod)
-            else
+        for(const pod of pods) {
+            let assigned = false
+            for(const o of pod.ownerIds) {
+                if(idToContainer[o]) {
+                    idToContainer[o].pods.push(pod)
+                    assigned = true
+                }
+            }
+            if(!assigned)
                 remains.push(pod)
-        }  
-
-        return [ret, remains];
+        }
+        return remains
     }
 
     extractPvcs(pod, pvcs) {
@@ -205,7 +226,7 @@ class MainScreen extends React.Component {
         return false
     }
 
-    mainContent = (groupByVal, groupByFunction, pvs, pvcs, pods, statefullsetes) => {
+    mainContent = (groupByVal, groupByFunction, pvs, pvcs, pods, statefullsetes, deployments) => {
 
         const tableHead = <thead><tr><th>Namespace</th><th>Name</th><th>Kind</th><th></th><th>Status</th></tr></thead>
 
@@ -218,6 +239,15 @@ class MainScreen extends React.Component {
                 <Collapsable text="Stateful sets">
                 <table className="mainTable">{tableHead}<tbody className="mainTable">
                     {statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupByFunction}/>)}
+                </tbody></table>
+                </Collapsable>
+                }
+
+
+                {deployments.length > 0 &&
+                <Collapsable text="Deployments">
+                <table className="mainTable">{tableHead}<tbody className="mainTable">
+                    {deployments.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupByFunction}/>)}
                 </tbody></table>
                 </Collapsable>
                 }
@@ -279,6 +309,7 @@ class MainScreen extends React.Component {
         const pvcs = this.state.data.pvcs.filter(obj => filter(obj));
         const pods = this.state.data.pods.filter(obj => filter(obj));
         const statefullsetes = this.state.data.statefullsetes.filter(obj => filter(obj));
+        const deployments = this.state.data.deployments.filter(obj => filter(obj));
 
         
     
@@ -326,14 +357,17 @@ class MainScreen extends React.Component {
                                         this.PvsGroupBy(pvs, groupByFunction), 
                                         this.PvcsGroupBy(pvcs, groupByFunction),
                                         this.PodsGroupBy(pods, groupByFunction),
-                                        this.StatefulsetsGroupBy(statefullsetes, groupByFunction))
+                                        this.StatefulsetsGroupBy(statefullsetes, groupByFunction),
+                                        this.StatefulsetsGroupBy(deployments, groupByFunction))
             })}
 
             {this.mainContent(groupByValues.length > 0 ? "ungrouped" : null, groupByFunctions(null), 
                               this.PvsGroupBy(pvs, groupByFunctions(null)), 
                                         this.PvcsGroupBy(pvcs, groupByFunctions(null)),
                                         this.PodsGroupBy(pods, groupByFunctions(null)),
-                                        this.StatefulsetsGroupBy(statefullsetes, groupByFunctions(null)))            
+                                        this.StatefulsetsGroupBy(statefullsetes, groupByFunctions(null)),
+                                        this.StatefulsetsGroupBy(deployments, groupByFunctions(null))
+                            )
             }
 
             </div>
