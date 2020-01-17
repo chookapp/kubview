@@ -4,7 +4,7 @@ import k8sproxy from './k8sproxy_mock.js';
 import Select from 'react-select';
 
 import "./style.css"
-import { StatefullSet, Pod, Pvc, Pv, Collapsable } from './BuildingBlocks';
+import { PodContainer, Pod, Pvc, Pv, Collapsable } from './BuildingBlocks';
 
 const groupByOptions = ['node', 'namespace'].map((v) => {return {value: v, label: v} } )
 
@@ -238,16 +238,15 @@ class MainScreen extends React.Component {
                 {statefullsetes.length > 0 &&
                 <Collapsable text="Stateful sets">
                 <table className="mainTable">{tableHead}<tbody className="mainTable">
-                    {statefullsetes.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupByFunction}/>)}
+                    {statefullsetes.map((ss) => <PodContainer key={ss.key} pc={ss} groupBy={groupByFunction}/>)}
                 </tbody></table>
                 </Collapsable>
                 }
 
-
                 {deployments.length > 0 &&
                 <Collapsable text="Deployments">
                 <table className="mainTable">{tableHead}<tbody className="mainTable">
-                    {deployments.map((ss) => <StatefullSet key={ss.key} ss={ss} groupBy={groupByFunction}/>)}
+                    {deployments.map((d) => <PodContainer key={d.key} pc={d} groupBy={groupByFunction}/>)}
                 </tbody></table>
                 </Collapsable>
                 }

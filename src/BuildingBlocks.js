@@ -98,24 +98,24 @@ function getCollapseIcon(collapsed, collapseChanged) {
     return <img src={iconSrc} alt="+" onClick={collapseChanged}/>;
 }
 
-export function StatefullSet(props) {
+export function PodContainer(props) {
     const [collapsed, setCollapsed] = useState(false);
 
     const collapseChanged = () => setCollapsed(!collapsed)
 
-    const ss = props.ss;
+    const pc = props.pc;
     const indent = props.indent === undefined ? 0 : props.indent;
 
-    const validPods = ss.pods.filter(pod => (isPodPartOfGroup(pod, props.groupBy)))
+    const validPods = pc.pods.filter(pod => (isPodPartOfGroup(pod, props.groupBy)))
     const hasChildren = validPods.length > 0
 
-    if (!hasChildren && !props.groupBy(ss))
+    if (!hasChildren && !props.groupBy(pc))
         return null;
 
     const collapseIcon = hasChildren ? getCollapseIcon(collapsed, collapseChanged) : null;
 
     return (<React.Fragment>
-        <ItemRow item={ss} indent={indent} collapseIcon={collapseIcon}/>
+        <ItemRow item={pc} indent={indent} collapseIcon={collapseIcon}/>
         {!collapsed &&
             validPods.map((pod) => <Pod key={pod.key} pod={pod} indent={indent + 1} groupBy={props.groupBy} />)
         }
