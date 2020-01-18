@@ -4,15 +4,10 @@ metadata:
   name: cluster-reader
 rules:
 - apiGroups: [""]
-  resources: ["pods"]
+  resources: ["pods", "persistentvolumeclaims", "persistentvolumes"]
   verbs: ["get", "watch", "list"]
 - apiGroups: ["extensions", "apps"]
-  resources: ["statefulsets"]
+  resources: ["statefulsets", "deployments", "replicasets"]
   verbs: ["get", "watch", "list"]
-- apiGroups: [""]
-  resources: ["persistentvolumeclaims"]
-  verbs: ["get", "watch", "list"]
-- apiGroups: [""]
-  resources: ["persistentvolumes"]
-  verbs: ["get", "watch", "list"]
+
 
